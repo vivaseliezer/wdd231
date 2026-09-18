@@ -641,13 +641,11 @@ section.info-section.alt {
 .directory-list .member-card {
     flex-direction: row;
     align-items: center;
+    padding: 1.1rem 1.5rem;
 }
 
 .directory-list .member-logo-wrap {
-    border-bottom: none;
-    border-right: 1px solid var(--card-border);
-    width: 160px;
-    flex-shrink: 0;
+    display: none;
 }
 
 .directory-list .member-body {
@@ -655,6 +653,8 @@ section.info-section.alt {
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem 1.5rem;
+    padding: 0;
+    width: 100%;
 }
 
 .directory-list .member-name {
@@ -1143,10 +1143,6 @@ footer {
     .form-layout {
         grid-template-columns: 1fr;
     }
-
-    .directory-list .member-logo-wrap {
-        width: 120px;
-    }
 }
 
 @media (max-width: 640px) {
@@ -1218,15 +1214,13 @@ footer {
 
     .directory-list .member-card {
         flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
     }
 
-    .directory-list .member-logo-wrap {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--card-border);
-    }
-
-    .directory-list .member-tagline {
-        display: block;
+    .directory-list .member-body {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
     }
 }
