@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Directory | Richmond Chamber of Commerce</title>
+    <meta name="description" content="Browse the full member directory of the Richmond Chamber of Commerce.">
+    <meta name="author" content="Orlando Vivas">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Facebook / Open Graph -->
+    <meta property="og:title" content="Member Directory | Richmond Chamber of Commerce">
+    <meta property="og:description" content="Browse the full member directory of the Richmond Chamber of Commerce.">
+    <meta property="og:image" content="https://vivaseliezer.github.io/wdd_231/chamber/images/richmond-hero.webp">
+    <meta property="og:url" content="https://vivaseliezer.github.io/wdd_231/chamber/directory.html">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- Scripts -->
+    <script src="scripts/main.js" defer></script>
+    <script src="scripts/directory.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-branding">
+                <img src="images/chamber-logo.svg" alt="Richmond Chamber of Commerce logo" class="chamber-logo">
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">☰</button>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="directory.html" class="active">Directory</a></li>
+                    <li class="nav-cta"><a href="join.html">Join the Chamber</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="content-wrap">
+            <div class="section-header">
+                <div>
+                    <h1 class="page-title">Member Directory</h1>
+                    <p class="page-intro">Explore the businesses and organizations that make up the Richmond Chamber of Commerce.</p>
+                </div>
+                <div class="view-toggle" role="group" aria-label="Directory view">
+                    <button type="button" id="grid-view-btn" class="view-btn active" aria-pressed="true">▦ Grid</button>
+                    <button type="button" id="list-view-btn" class="view-btn" aria-pressed="false">☰ List</button>
+                </div>
+            </div>
+
+            <div class="directory-grid" id="directory-container">
+                <p class="error-msg">Loading member directory&hellip;</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p class="footer-contact">400 E Main St, Richmond, VA 23219 &bull; (804) 555-0100 &bull; info@richmondchamber.example.com</p>
+            <div class="social-links">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63-.73-1.63-1.63-1.63Z"/></svg>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook Page">
+                    <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X / Twitter Profile">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+            </div>
+            <p class="footer-info">
+                &copy; <span id="currentyear"></span> Richmond Chamber of Commerce
+            </p>
+            <p class="last-modified">Last Modification: <span id="lastModified"></span></p>
+            <a href="../index.html" class="footer-course-link">&larr; Back to WDD 231 course site</a>
+        </div>
+    </footer>
+</body>
+</html>

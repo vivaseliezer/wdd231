@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Dominion Innovation Labs",
+    "address": "400 E Main St, Richmond, VA 23219",
+    "phone": "(804) 555-0142",
+    "website": "https://dominioninnovation.example.com",
+    "image": "images/member-1.svg",
+    "membership": 3,
+    "membershipLevel": "Gold",
+    "category": "Technology & Software",
+    "tagline": "Pioneering enterprise cloud architecture and AI solutions."
+  },
+  {
+    "name": "James River Financial Advisors",
+    "address": "901 E Cary St, Suite 1200, Richmond, VA 23219",
+    "phone": "(804) 555-0188",
+    "website": "https://jamesriverfinancial.example.com",
+    "image": "images/member-2.svg",
+    "membership": 3,
+    "membershipLevel": "Gold",
+    "category": "Financial Services",
+    "tagline": "Strategic wealth management and corporate retirement advisory."
+  },
+  {
+    "name": "Shockoe Valley Creative Agency",
+    "address": "1710 E Franklin St, Richmond, VA 23223",
+    "phone": "(804) 555-0193",
+    "website": "https://shockoevirtual.example.com",
+    "image": "images/member-3.svg",
+    "membership": 2,
+    "membershipLevel": "Silver",
+    "category": "Marketing & Branding",
+    "tagline": "Full-spectrum digital marketing and brand storytelling."
+  },
+  {
+    "name": "Old Dominion Logistics",
+    "address": "2200 E Broad St, Richmond, VA 23223",
+    "phone": "(804) 555-0164",
+    "website": "https://olddominionlogistics.example.com",
+    "image": "images/member-4.svg",
+    "membership": 2,
+    "membershipLevel": "Silver",
+    "category": "Supply Chain & Freight",
+    "tagline": "Connecting Mid-Atlantic supply chains with clean vehicle fleets."
+  },
+  {
+    "name": "Monument Health & Wellness",
+    "address": "2810 Monument Ave, Richmond, VA 23221",
+    "phone": "(804) 555-0175",
+    "website": "https://monumenthealthva.example.com",
+    "image": "images/member-5.svg",
+    "membership": 3,
+    "membershipLevel": "Gold",
+    "category": "Healthcare & Wellness",
+    "tagline": "Comprehensive preventative care and specialized family medicine."
+  },
+  {
+    "name": "Carytown Artisan Bakery",
+    "address": "3120 W Cary St, Richmond, VA 23221",
+    "phone": "(804) 555-0131",
+    "website": "https://carytownbakery.example.com",
+    "image": "images/member-6.svg",
+    "membership": 1,
+    "membershipLevel": "Member",
+    "category": "Food & Beverage",
+    "tagline": "Organic sourdough, hand-crafted pastries, and local coffees."
+  },
+  {
+    "name": "River City Eco Landscapes",
+    "address": "1405 Westover Hills Blvd, Richmond, VA 23225",
+    "phone": "(804) 555-0156",
+    "website": "https://rivercitylandscapes.example.com",
+    "image": "images/member-7.svg",
+    "membership": 1,
+    "membershipLevel": "Member",
+    "category": "Environmental Services",
+    "tagline": "Sustainable native plant landscaping and conservation."
+  },
+  {
+    "name": "Canal Walk Legal Partners",
+    "address": "100 Virginia St, Suite 400, Richmond, VA 23219",
+    "phone": "(804) 555-0112",
+    "website": "https://canalwalklegal.example.com",
+    "image": "images/member-8.svg",
+    "membership": 2,
+    "membershipLevel": "Silver",
+    "category": "Legal Services",
+    "tagline": "Commercial law, intellectual property, and business counsel."
+  }
+]
