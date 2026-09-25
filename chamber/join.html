@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join the Chamber | Richmond Chamber of Commerce</title>
-    <meta name="description" content="Apply for membership with the Richmond Chamber of Commerce.">
+    <meta name="description" content="Apply for Richmond Chamber of Commerce membership. Explore networking, business advocacy, and marketing benefits tailored to your business growth.">
     <meta name="author" content="Orlando Vivas">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Join the Chamber of Commerce | Richmond Chamber">
+    <meta property="og:description" content="Join the Richmond Chamber of Commerce today and unlock business growth opportunities, local networking events, and marketing spotlights.">
+    <meta property="og:image" content="https://vivaseliezer.github.io/wdd231/chamber/images/hero-chamber.webp">
+    <meta property="og:url" content="https://vivaseliezer.github.io/wdd231/chamber/join.html">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,40 +48,40 @@
     <!-- Main Content -->
     <main>
         <div class="content-wrap">
-            <h1 class="page-title">Join the Chamber</h1>
-            <p class="page-intro">Fill out the application below and our membership team will follow up within two business days.</p>
+            <h1 class="page-title">Join the Richmond Chamber of Commerce</h1>
+            <p class="page-intro">Complete the membership application below to connect with local businesses, enhance your brand visibility, and accelerate your growth.</p>
 
             <div class="form-layout">
                 <!-- Application Form -->
                 <form class="join-form" action="thankyou.html" method="get">
                     <fieldset>
-                        <legend>Your Information</legend>
+                        <legend>Applicant Information</legend>
 
                         <div class="form-row">
                             <div class="form-field">
-                                <label for="firstname">First Name <span aria-hidden="true">*</span></label>
-                                <input type="text" id="firstname" name="firstname" required autocomplete="given-name" autofocus>
+                                <label for="fname">First Name <span class="required" aria-hidden="true">*</span></label>
+                                <input type="text" id="fname" name="fname" autocomplete="given-name" title="Please enter your first name" required autofocus>
                             </div>
                             <div class="form-field">
-                                <label for="lastname">Last Name <span aria-hidden="true">*</span></label>
-                                <input type="text" id="lastname" name="lastname" required autocomplete="family-name">
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="email">Email Address <span aria-hidden="true">*</span></label>
-                                <input type="email" id="email" name="email" placeholder="name@example.com" required autocomplete="email">
-                            </div>
-                            <div class="form-field">
-                                <label for="phone">Mobile Phone <span aria-hidden="true">*</span></label>
-                                <input type="tel" id="phone" name="phone" placeholder="555-555-5555" pattern="^[0-9]{3}[-. ]?[0-9]{3}[-. ]?[0-9]{4}$" title="Format: 555-555-5555" required autocomplete="tel">
+                                <label for="lname">Last Name <span class="required" aria-hidden="true">*</span></label>
+                                <input type="text" id="lname" name="lname" autocomplete="family-name" title="Please enter your last name" required>
                             </div>
                         </div>
 
                         <div class="form-field full">
                             <label for="orgtitle">Organizational Title</label>
-                            <input type="text" id="orgtitle" name="orgtitle" placeholder="e.g. Owner, Marketing Director" autocomplete="organization-title">
+                            <input type="text" id="orgtitle" name="orgtitle" autocomplete="organization-title" pattern="[A-Za-z\s\-]{7,}" title="Organizational title (minimum 7 letters, hyphens, and spaces only)" placeholder="e.g. Managing Director">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                                <input type="email" id="email" name="email" autocomplete="email" placeholder="name@example.com" title="Please enter a valid email address" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="phone">Mobile Phone <span class="required" aria-hidden="true">*</span></label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="555-555-5555" title="Please enter your mobile phone number" required>
+                            </div>
                         </div>
                     </fieldset>
 
@@ -83,13 +89,13 @@
                         <legend>Business Information</legend>
 
                         <div class="form-field full">
-                            <label for="orgname">Business/Organization Name <span aria-hidden="true">*</span></label>
-                            <input type="text" id="orgname" name="orgname" required autocomplete="organization" minlength="2">
+                            <label for="organization">Business / Organization Name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="organization" name="organization" autocomplete="organization" title="Please enter your business or organization name" placeholder="e.g. Richmond Business Innovations" required>
                         </div>
 
                         <div class="form-field full">
-                            <label for="orgdesc">Brief Description</label>
-                            <textarea id="orgdesc" name="orgdesc" rows="3" placeholder="What does your business do?"></textarea>
+                            <label for="description">Organization Description</label>
+                            <textarea id="description" name="description" title="Provide a brief description of your organization" rows="4" placeholder="Briefly describe what your organization does..."></textarea>
                         </div>
                     </fieldset>
 
@@ -97,74 +103,170 @@
                         <legend>Membership Level</legend>
                         <div class="membership-options">
                             <div class="membership-option">
-                                <input type="radio" id="level-np" name="membership" value="NP Member" checked>
-                                <label for="level-np">NP Member &mdash; Free</label>
-                                <button type="button" class="level-info-btn" data-level="np" aria-label="NP Member info">i</button>
+                                <input type="radio" id="membership-np" name="membership" value="np" checked required>
+                                <label for="membership-np">NP Membership &mdash; Non-Profit (Free)</label>
                             </div>
                             <div class="membership-option">
-                                <input type="radio" id="level-bronze" name="membership" value="Bronze">
-                                <label for="level-bronze">Bronze &mdash; $75/yr</label>
-                                <button type="button" class="level-info-btn" data-level="bronze" aria-label="Bronze info">i</button>
+                                <input type="radio" id="membership-bronze" name="membership" value="bronze" required>
+                                <label for="membership-bronze">Bronze Membership &mdash; $75 / year</label>
                             </div>
                             <div class="membership-option">
-                                <input type="radio" id="level-silver" name="membership" value="Silver">
-                                <label for="level-silver">Silver &mdash; $150/yr</label>
-                                <button type="button" class="level-info-btn" data-level="silver" aria-label="Silver info">i</button>
+                                <input type="radio" id="membership-silver" name="membership" value="silver" required>
+                                <label for="membership-silver">Silver Membership &mdash; $150 / year</label>
                             </div>
                             <div class="membership-option">
-                                <input type="radio" id="level-gold" name="membership" value="Gold">
-                                <label for="level-gold">Gold &mdash; $300/yr</label>
-                                <button type="button" class="level-info-btn" data-level="gold" aria-label="Gold info">i</button>
+                                <input type="radio" id="membership-gold" name="membership" value="gold" required>
+                                <label for="membership-gold">Gold Membership &mdash; $300 / year</label>
                             </div>
                         </div>
                     </fieldset>
 
                     <input type="hidden" id="timestamp" name="timestamp">
 
-                    <button type="submit" class="btn btn-primary form-submit">Submit Application</button>
+                    <button type="submit" class="btn btn-primary form-submit">Apply for Membership</button>
                 </form>
 
-                <!-- Sidebar -->
-                <aside>
-                    <div class="info-card">
-                        <h3>Why Join?</h3>
-                        <p>Members gain access to exclusive networking events, advocacy on local business policy, and a featured spot in our online directory.</p>
-                    </div>
+                <!-- Membership Level Benefit Cards -->
+                <aside class="membership-sidebar" aria-label="Membership Level Information">
+                    <h2 class="sidebar-heading">Membership Benefits</h2>
+                    <div class="membership-cards">
+                        <!-- NP Level Card -->
+                        <div class="membership-card card-np">
+                            <div class="card-header">
+                                <span class="card-badge badge-np">Non-Profit</span>
+                                <h3>NP Membership</h3>
+                                <p class="card-price">Free <span>/ year</span></p>
+                            </div>
+                            <p class="card-desc">Dedicated support, community networking, and directory visibility for 501(c)(3) registered non-profit organizations.</p>
+                            <button type="button" class="btn-modal-open" data-modal="modal-np" aria-haspopup="dialog">View NP Benefits &rarr;</button>
+                        </div>
 
-                    <div class="benefit-card">
-                        <h4>🤝 Networking</h4>
-                        <ul>
-                            <li>Monthly mixers</li>
-                            <li>Annual business expo</li>
-                        </ul>
-                    </div>
-                    <div class="benefit-card">
-                        <h4>📣 Visibility</h4>
-                        <ul>
-                            <li>Directory listing</li>
-                            <li>Home page spotlight eligibility</li>
-                        </ul>
-                    </div>
-                    <div class="benefit-card">
-                        <h4>📈 Growth</h4>
-                        <ul>
-                            <li>Workshops &amp; training</li>
-                            <li>Referral opportunities</li>
-                        </ul>
+                        <!-- Bronze Level Card -->
+                        <div class="membership-card card-bronze">
+                            <div class="card-header">
+                                <span class="card-badge badge-bronze">Starter</span>
+                                <h3>Bronze Membership</h3>
+                                <p class="card-price">$75 <span>/ year</span></p>
+                            </div>
+                            <p class="card-desc">Entry-tier package tailored for solo entrepreneurs, freelancers, and emerging small businesses in the Richmond area.</p>
+                            <button type="button" class="btn-modal-open" data-modal="modal-bronze" aria-haspopup="dialog">View Bronze Benefits &rarr;</button>
+                        </div>
+
+                        <!-- Silver Level Card -->
+                        <div class="membership-card card-silver">
+                            <div class="card-header">
+                                <span class="card-badge badge-silver">Popular</span>
+                                <h3>Silver Membership</h3>
+                                <p class="card-price">$150 <span>/ year</span></p>
+                            </div>
+                            <p class="card-desc">Strategic growth level offering home page spotlight consideration, training workshops, and event discounts.</p>
+                            <button type="button" class="btn-modal-open" data-modal="modal-silver" aria-haspopup="dialog">View Silver Benefits &rarr;</button>
+                        </div>
+
+                        <!-- Gold Level Card -->
+                        <div class="membership-card card-gold">
+                            <div class="card-header">
+                                <span class="card-badge badge-gold">Premier</span>
+                                <h3>Gold Membership</h3>
+                                <p class="card-price">$300 <span>/ year</span></p>
+                            </div>
+                            <p class="card-desc">Elite tier providing premier homepage spotlight positioning, VIP event access, annual expo booth, and Chamber voting privileges.</p>
+                            <button type="button" class="btn-modal-open" data-modal="modal-gold" aria-haspopup="dialog">View Gold Benefits &rarr;</button>
+                        </div>
                     </div>
                 </aside>
             </div>
         </div>
     </main>
 
-    <!-- Membership Level Info Dialog -->
-    <dialog id="level-dialog">
-        <div class="dialog-content">
-            <div class="dialog-header">
-                <h3 id="level-dialog-title">Membership Level</h3>
-                <button type="button" id="level-dialog-close" class="close-btn" aria-label="Close">&times;</button>
+    <!-- Modals for 4 Membership Levels -->
+    <dialog id="modal-np" class="level-modal">
+        <div class="modal-dialog-content">
+            <div class="modal-header">
+                <h3>Non-Profit (NP) Membership</h3>
+                <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
             </div>
-            <div class="dialog-body" id="level-dialog-body"></div>
+            <div class="modal-body">
+                <p class="modal-cost-highlight">Annual Investment: <strong>Free</strong> (501(c)(3) verification required)</p>
+                <h4>Exclusive Benefits Included:</h4>
+                <ul class="modal-list">
+                    <li>Full listing in the Richmond Chamber Online Member Directory.</li>
+                    <li>Complimentary admission to monthly community networking mixers.</li>
+                    <li>Chamber newsletter subscription and community announcement postings.</li>
+                    <li>Invitations to non-profit roundtable discussions and grant workshops.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-close-btn">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-bronze" class="level-modal">
+        <div class="modal-dialog-content">
+            <div class="modal-header">
+                <h3>Bronze Membership</h3>
+                <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-cost-highlight">Annual Investment: <strong>$75 / year</strong></p>
+                <h4>Exclusive Benefits Included:</h4>
+                <ul class="modal-list">
+                    <li>All benefits included in the NP Membership tier.</li>
+                    <li>Enhanced online directory profile complete with your company logo and website URL.</li>
+                    <li>One complimentary ticket per quarter to Chamber educational seminars.</li>
+                    <li>Official Richmond Chamber digital member badge for your website.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-close-btn">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-silver" class="level-modal">
+        <div class="modal-dialog-content">
+            <div class="modal-header">
+                <h3>Silver Membership</h3>
+                <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-cost-highlight">Annual Investment: <strong>$150 / year</strong></p>
+                <h4>Exclusive Benefits Included:</h4>
+                <ul class="modal-list">
+                    <li>All benefits included in Bronze Membership.</li>
+                    <li>Eligibility for rotating Chamber Home Page Business Spotlights.</li>
+                    <li>15% discount on Chamber event sponsorships and promotional booths.</li>
+                    <li>Two complimentary tickets to all regional networking breakfasts.</li>
+                    <li>Social media mention welcoming your business to the community.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-close-btn">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-gold" class="level-modal">
+        <div class="modal-dialog-content">
+            <div class="modal-header">
+                <h3>Gold Membership</h3>
+                <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-cost-highlight">Annual Investment: <strong>$300 / year</strong></p>
+                <h4>Exclusive Benefits Included:</h4>
+                <ul class="modal-list">
+                    <li>All benefits included in Silver Membership.</li>
+                    <li>Priority placement in Home Page Spotlights and Directory search results.</li>
+                    <li>Complimentary exhibition booth at the Annual Richmond Business Expo.</li>
+                    <li>Official voting rights during Chamber board and annual policy meetings.</li>
+                    <li>VIP seating and recognition at the Annual Chamber Gala.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-close-btn">Close</button>
+            </div>
         </div>
     </dialog>
 

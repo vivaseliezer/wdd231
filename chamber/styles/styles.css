@@ -745,9 +745,10 @@ section.info-section.alt {
 /* Forms (Join page) */
 .form-layout {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 2.5rem;
     align-items: start;
+    margin-top: 1.5rem;
 }
 
 .join-form {
@@ -802,10 +803,9 @@ section.info-section.alt {
     color: var(--text-primary);
 }
 
-.form-field .hint {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    font-weight: 400;
+.required {
+    color: #dc2626;
+    margin-left: 0.15rem;
 }
 
 .form-field input,
@@ -813,19 +813,20 @@ section.info-section.alt {
 .form-field select {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    padding: 0.6rem 0.75rem;
+    padding: 0.65rem 0.75rem;
     border: 1px solid var(--card-border);
     border-radius: 6px;
     background-color: #fff;
     color: var(--text-primary);
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
 .form-field input:focus,
 .form-field textarea:focus,
 .form-field select:focus {
-    outline: 2px solid var(--gold);
-    outline-offset: 1px;
+    outline: none;
     border-color: var(--gold-dark);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
 }
 
 .form-field input:invalid:not(:placeholder-shown) {
@@ -841,35 +842,33 @@ section.info-section.alt {
 .membership-option {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.75rem;
     border: 1px solid var(--card-border);
     border-radius: 8px;
-    padding: 0.65rem 0.85rem;
+    padding: 0.75rem 0.9rem;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+.membership-option:hover {
+    border-color: var(--navy-mid);
+    background-color: #f8fafc;
+}
+
+.membership-option input[type="radio"] {
+    accent-color: var(--navy-dark);
+    width: 1.1rem;
+    height: 1.1rem;
+    cursor: pointer;
 }
 
 .membership-option label {
     flex: 1;
     font-weight: 600;
     font-size: 0.92rem;
-}
-
-.membership-option .level-info-btn {
-    background: none;
-    border: 1px solid var(--navy-mid);
-    color: var(--navy-mid);
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    font-weight: 700;
+    color: var(--text-primary);
     cursor: pointer;
-    line-height: 1;
-    flex-shrink: 0;
-}
-
-.membership-option .level-info-btn:hover {
-    background-color: var(--navy-mid);
-    color: #fff;
 }
 
 .form-submit {
@@ -877,77 +876,182 @@ section.info-section.alt {
     width: 100%;
 }
 
-/* Sidebar cards on join page */
-.info-card {
-    background-color: var(--navy-dark);
-    color: var(--text-onnavy);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+/* Membership Level Cards (Join page sidebar) */
+.membership-sidebar {
+    display: flex;
+    flex-direction: column;
 }
 
-.info-card h3 {
+.sidebar-heading {
     font-family: var(--font-heading);
-    color: var(--gold);
-    margin-bottom: 0.6rem;
-    font-size: 1.05rem;
+    font-size: 1.35rem;
+    color: var(--navy-dark);
+    margin-bottom: 1rem;
+    font-weight: 700;
 }
 
-.info-card p {
-    color: var(--text-onnavy-muted);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+.membership-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
 }
 
-.benefit-card {
+/* Initial Load Animation on the 4 Membership Cards */
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(22px) scale(0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.membership-card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: var(--border-radius);
-    padding: 1.25rem;
-    margin-bottom: 1rem;
+    padding: 1.35rem 1.5rem;
+    box-shadow: 0 3px 10px rgba(15, 41, 66, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-left: 6px solid var(--navy-mid);
+    animation: cardEntrance 0.75s ease-out forwards;
+    opacity: 0;
 }
 
-.benefit-card h4 {
+.membership-card:nth-child(1) {
+    animation-delay: 0.1s;
+    border-left-color: #10b981; /* Non-profit emerald */
+}
+
+.membership-card:nth-child(2) {
+    animation-delay: 0.25s;
+    border-left-color: #cd7f32; /* Bronze */
+}
+
+.membership-card:nth-child(3) {
+    animation-delay: 0.4s;
+    border-left-color: #64748b; /* Silver slate */
+}
+
+.membership-card:nth-child(4) {
+    animation-delay: 0.55s;
+    border-left-color: var(--gold-dark); /* Gold */
+}
+
+.membership-card .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.card-badge {
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+}
+
+.badge-np {
+    background-color: #ecfdf5;
+    color: #065f46;
+}
+
+.badge-bronze {
+    background-color: #fff7ed;
+    color: #9a3412;
+}
+
+.badge-silver {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+.badge-gold {
+    background-color: #fefce8;
+    color: #854d0e;
+}
+
+.membership-card h3 {
     font-family: var(--font-heading);
+    font-size: 1.15rem;
     color: var(--navy-dark);
-    margin-bottom: 0.4rem;
-    font-size: 0.98rem;
+    margin: 0.2rem 0 0;
+    font-weight: 700;
 }
 
-.benefit-card ul {
-    margin: 0.4rem 0 0 1.1rem;
-    color: var(--text-secondary);
+.card-price {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--navy-dark);
+    margin: 0;
+}
+
+.card-price span {
     font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
 }
 
-.benefit-card li {
-    margin-bottom: 0.2rem;
+.card-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
 }
 
-/* Dialog / modal (level info, on Join page) */
-dialog#level-dialog {
+.btn-modal-open {
+    align-self: flex-start;
+    background: none;
+    border: 1px solid var(--navy-mid);
+    color: var(--navy-mid);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    margin-top: 0.25rem;
+}
+
+.btn-modal-open:hover,
+.btn-modal-open:focus-visible {
+    background-color: var(--navy-mid);
+    color: var(--text-onnavy);
+}
+
+/* Dialog / Modal (Membership Levels on Join Page) */
+dialog.level-modal {
     background-color: var(--card-bg);
     color: var(--text-primary);
     border: 1px solid var(--card-border);
     border-radius: var(--border-radius);
     padding: 0;
-    max-width: 460px;
+    max-width: 520px;
     width: 90%;
     margin: auto;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
 }
 
-dialog#level-dialog::backdrop {
-    background-color: rgba(15, 41, 66, 0.55);
-    backdrop-filter: blur(2px);
+dialog.level-modal::backdrop {
+    background-color: rgba(15, 41, 66, 0.65);
+    backdrop-filter: blur(3px);
 }
 
-.dialog-content {
+.modal-dialog-content {
     display: flex;
     flex-direction: column;
 }
 
-.dialog-header {
+.modal-header {
     background-color: var(--navy-dark);
     color: var(--text-onnavy);
     padding: 1rem 1.5rem;
@@ -957,32 +1061,75 @@ dialog#level-dialog::backdrop {
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
-.dialog-header h3 {
+.modal-header h3 {
     font-family: var(--font-heading);
     font-size: 1.15rem;
     margin: 0;
     color: var(--gold);
+    font-weight: 700;
 }
 
-.close-btn {
+.modal-close-btn {
     background: none;
     border: none;
     color: var(--text-onnavy);
     font-size: 1.5rem;
     cursor: pointer;
     line-height: 1;
-    padding: 0 0.25rem;
+    padding: 0 0.3rem;
+    transition: color var(--transition-speed) ease;
 }
 
-.close-btn:hover {
+.modal-close-btn:hover,
+.modal-close-btn:focus-visible {
     color: var(--gold);
 }
 
-.dialog-body {
+.modal-body {
     padding: 1.5rem;
     font-size: 0.92rem;
     color: var(--text-primary);
     line-height: 1.6;
+}
+
+.modal-cost-highlight {
+    font-size: 1rem;
+    color: var(--navy-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.modal-cost-highlight strong {
+    color: var(--gold-dark);
+}
+
+.modal-body h4 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--navy-dark);
+    margin-bottom: 0.5rem;
+}
+
+.modal-list {
+    margin: 0.5rem 0 0 1.25rem;
+    color: var(--text-secondary);
+}
+
+.modal-list li {
+    margin-bottom: 0.4rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.75rem 1.5rem 1.25rem;
+    border-top: 1px solid var(--card-border);
+}
+
+.modal-footer .btn {
+    padding: 0.45rem 1.25rem;
+    font-size: 0.85rem;
 }
 
 /* Thank you page */
@@ -990,31 +1137,41 @@ dialog#level-dialog::backdrop {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: var(--border-radius);
-    padding: 2rem;
-    max-width: 640px;
-    margin: 1rem auto 0;
-    box-shadow: 0 2px 8px rgba(15, 41, 66, 0.06);
+    padding: 2.25rem;
+    max-width: 680px;
+    margin: 1.5rem auto 0;
+    box-shadow: 0 4px 14px rgba(15, 41, 66, 0.08);
 }
 
 .thankyou-icon {
-    font-size: 2.75rem;
+    font-size: 3rem;
     margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .thankyou-card h2 {
     font-family: var(--font-heading);
     color: var(--navy-dark);
     margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 1.4rem;
 }
 
 .thankyou-card > p {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
+    text-align: center;
+    line-height: 1.6;
 }
 
 .summary-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #fff;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .summary-table tr {
@@ -1028,19 +1185,28 @@ dialog#level-dialog::backdrop {
 .summary-table th,
 .summary-table td {
     text-align: left;
-    padding: 0.65rem 0.5rem;
+    padding: 0.75rem 1rem;
     font-size: 0.92rem;
 }
 
 .summary-table th {
     color: var(--text-secondary);
     font-weight: 600;
-    width: 40%;
+    width: 38%;
+    background-color: #f8fafc;
 }
 
 .summary-table td {
     color: var(--text-primary);
     font-weight: 500;
+}
+
+.thankyou-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 /* Footer */

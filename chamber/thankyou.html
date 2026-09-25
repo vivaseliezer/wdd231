@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You | Richmond Chamber of Commerce</title>
-    <meta name="description" content="Thank you for applying to join the Richmond Chamber of Commerce.">
+    <meta name="description" content="Thank you for applying to the Richmond Chamber of Commerce. Your membership submission has been received and is being processed.">
     <meta name="author" content="Orlando Vivas">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Application Received | Richmond Chamber of Commerce">
+    <meta property="og:description" content="Your application to join the Richmond Chamber of Commerce has been successfully submitted. We look forward to connecting with your business!">
+    <meta property="og:image" content="https://vivaseliezer.github.io/wdd231/chamber/images/hero-chamber.webp">
+    <meta property="og:url" content="https://vivaseliezer.github.io/wdd231/chamber/thankyou.html">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,52 +48,58 @@
     <!-- Main Content -->
     <main>
         <div class="content-wrap">
+            <h1 class="page-title">Membership Application Confirmation</h1>
+
             <div class="thankyou-card">
-                <div class="thankyou-icon">🎉</div>
-                <h2>Thank you, <span id="ty-greeting-name">there</span>!</h2>
-                <p>Your application has been received. A member of our team will reach out within two business days to complete your enrollment.</p>
+                <div class="thankyou-icon" aria-hidden="true">🎉</div>
+                <h2>Thank you, <span id="ty-greeting-name">Valued Applicant</span>!</h2>
+                <p>Your membership application has been successfully submitted. Below is a summary of the details received. Our membership committee will review your submission and contact you within two business days.</p>
 
                 <table class="summary-table">
                     <tbody>
                         <tr>
                             <th scope="row">First Name</th>
-                            <td id="ty-firstname"></td>
+                            <td id="ty-firstname">&mdash;</td>
                         </tr>
                         <tr>
                             <th scope="row">Last Name</th>
-                            <td id="ty-lastname"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Email</th>
-                            <td id="ty-email"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Phone</th>
-                            <td id="ty-phone"></td>
+                            <td id="ty-lastname">&mdash;</td>
                         </tr>
                         <tr>
                             <th scope="row">Organizational Title</th>
-                            <td id="ty-orgtitle"></td>
+                            <td id="ty-orgtitle">&mdash;</td>
                         </tr>
                         <tr>
-                            <th scope="row">Business Name</th>
-                            <td id="ty-orgname"></td>
+                            <th scope="row">Email Address</th>
+                            <td id="ty-email">&mdash;</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mobile Phone</th>
+                            <td id="ty-phone">&mdash;</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Business / Organization</th>
+                            <td id="ty-orgname">&mdash;</td>
                         </tr>
                         <tr>
                             <th scope="row">Membership Level</th>
-                            <td id="ty-membership"></td>
+                            <td id="ty-membership">&mdash;</td>
                         </tr>
                         <tr>
-                            <th scope="row">Submitted</th>
-                            <td id="ty-timestamp"></td>
+                            <th scope="row">Organization Description</th>
+                            <td id="ty-description">&mdash;</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Submitted Date &amp; Time</th>
+                            <td id="ty-timestamp">&mdash;</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <p style="margin-top: 1.5rem;">
-                    <a href="directory.html" class="btn btn-primary">Browse the Directory</a>
-                    <a href="index.html" class="btn btn-secondary">Back to Home</a>
-                </p>
+                <div class="thankyou-actions">
+                    <a href="directory.html" class="btn btn-primary">Browse Business Directory</a>
+                    <a href="index.html" class="btn btn-secondary">Back to Chamber Home</a>
+                </div>
             </div>
         </div>
     </main>
