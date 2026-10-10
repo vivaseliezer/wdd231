@@ -1,0 +1,1477 @@
+/* ==========================================================================
+   TrailScout Virginia - Final Project Stylesheet
+   Author: Orlando Vivas
+   Course: WDD 231 - Web Frontend Development I (BYU-Idaho)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens / CSS Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+    --color-primary: #1b4332;
+    --color-primary-dark: #0f291e;
+    --color-primary-light: #2d6a4f;
+    --color-accent: #b45309;
+    --color-accent-light: #f59e0b;
+    --color-bg: #f8faf8;
+    --color-surface: #ffffff;
+    --color-text-main: #1f2937;
+    --color-text-muted: #4b5563;
+    --color-border: #d1d5db;
+    --color-border-subtle: #e5e7eb;
+
+    /* Difficulty Badges - High AA Contrast */
+    --badge-easy-bg: #dcfce7;
+    --badge-easy-text: #14532d;
+    --badge-mod-bg: #fef3c7;
+    --badge-mod-text: #78350f;
+    --badge-stren-bg: #fee2e2;
+    --badge-stren-text: #991b1b;
+
+    /* Typography */
+    --font-heading: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+    --font-body: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+
+    /* Spacing & Borders */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.14);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Base Typography
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    color: var(--color-text-main);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+a:hover, a:focus {
+    color: var(--color-accent);
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header & Responsive Navigation
+   -------------------------------------------------------------------------- */
+header {
+    background-color: var(--color-primary-dark);
+    color: #ffffff;
+    border-bottom: 3px solid var(--color-accent);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo-branding {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.site-logo-img {
+    height: 48px;
+    width: auto;
+}
+
+.brand-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+}
+
+.brand-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #d1fae5;
+    text-transform: uppercase;
+}
+
+/* Mobile Hamburger Button */
+.nav-toggle {
+    display: block;
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.4rem 0.65rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.nav-toggle:hover {
+    background-color: var(--color-primary-light);
+}
+
+/* Navigation List */
+.site-nav {
+    width: 100%;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-menu.open {
+    display: flex;
+}
+
+.nav-menu li {
+    margin: 0;
+}
+
+.nav-menu a {
+    display: block;
+    color: #f3f4f6;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-menu a:hover {
+    background-color: var(--color-primary-light);
+    color: #ffffff;
+}
+
+/* Wayfinding Active Link */
+.nav-menu a.active {
+    background-color: #245840;
+    color: #ffffff;
+    border-left: 4px solid var(--color-accent-light);
+}
+
+/* --------------------------------------------------------------------------
+   4. Main Content Area & Layout Containers
+   -------------------------------------------------------------------------- */
+main {
+    flex: 1 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+}
+
+/* Visitor Greeting Banner (LocalStorage) */
+.visitor-banner {
+    background: linear-gradient(90deg, #1b4332, #2d6a4f);
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    font-size: 0.95rem;
+}
+
+.visitor-banner p {
+    margin: 0;
+}
+
+.btn-close-banner {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    line-height: 1;
+}
+
+/* Page Headers */
+.page-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 2.2rem;
+    color: var(--color-primary-dark);
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+}
+
+.page-header .page-tagline {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Banner (Home Page)
+   -------------------------------------------------------------------------- */
+.hero-section {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--shadow-md);
+    background-color: var(--color-primary-dark);
+}
+
+.hero-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 380px;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 41, 30, 0.4) 0%, rgba(15, 41, 30, 0.85) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.hero-tag {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+}
+
+.hero-title {
+    font-size: 2.3rem;
+    line-height: 1.2;
+    margin: 0 0 0.75rem 0;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    margin: 0 0 1.5rem 0;
+    color: #f3f4f6;
+    line-height: 1.5;
+}
+
+.hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   6. Buttons & Badges
+   -------------------------------------------------------------------------- */
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-easy {
+    background-color: var(--badge-easy-bg);
+    color: var(--badge-easy-text);
+    border: 1px solid #86efac;
+}
+
+.badge-moderate {
+    background-color: var(--badge-mod-bg);
+    color: var(--badge-mod-text);
+    border: 1px solid #fde047;
+}
+
+.badge-strenuous {
+    background-color: var(--badge-stren-bg);
+    color: var(--badge-stren-text);
+    border: 1px solid #fca5a5;
+}
+
+/* --------------------------------------------------------------------------
+   7. Home Quick Stats & Safety Grid (CSS Layouts)
+   -------------------------------------------------------------------------- */
+.stats-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background-color: var(--color-surface);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.stat-card .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.stat-card .stat-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* Featured Section on Home */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.75rem;
+    color: var(--color-primary-dark);
+    margin: 0;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.featured-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featured-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.featured-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: #e5e7eb;
+}
+
+.featured-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.featured-card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.featured-region {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+}
+
+.featured-title {
+    font-size: 1.25rem;
+    color: var(--color-primary-dark);
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+}
+
+.featured-metrics {
+    display: flex;
+    gap: 0.85rem;
+    font-size: 0.85rem;
+    color: var(--color-text-main);
+    background-color: #f3f4f6;
+    padding: 0.4rem 0.65rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.featured-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1.25rem 0;
+    flex: 1;
+}
+
+.featured-card-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+/* Home Guides Grid */
+.guides-section {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.guide-item {
+    background-color: #f9fafb;
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.guide-item h3 {
+    margin-top: 0;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
+
+.guide-item p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. Trail Directory Controls & Dynamic Cards (trails.html)
+   -------------------------------------------------------------------------- */
+.directory-controls {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.controls-top-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-box-wrap {
+    flex: 1;
+}
+
+.search-label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+    color: var(--color-primary-dark);
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.filter-buttons-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.filter-label {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-right: 0.25rem;
+}
+
+.filter-btn, .fav-toggle-btn {
+    background-color: #f3f4f6;
+    color: var(--color-text-main);
+    border: 1px solid var(--color-border);
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover, .fav-toggle-btn:hover {
+    background-color: #e5e7eb;
+}
+
+.filter-btn.active, .fav-toggle-btn.active {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary-dark);
+}
+
+.badge-counter {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    padding: 0.1rem 0.45rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+}
+
+.controls-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.trails-count-text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin: 0;
+}
+
+.view-toggle-wrap {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.view-btn {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.view-btn.active {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+}
+
+/* Summary Stats Strip on Directory */
+.directory-summary-strip {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.summary-pill {
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    box-shadow: var(--shadow-sm);
+}
+
+.summary-pill strong {
+    color: var(--color-primary);
+}
+
+/* Trails Grid View (CSS Layouts) */
+.trails-grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+/* Trails List View (CSS Layouts) */
+.trails-list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.trail-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trail-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.trail-card-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    background-color: #f3f4f6;
+}
+
+.trail-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trail-card-badge {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+}
+
+.btn-fav {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    font-size: 1.1rem;
+    transition: transform 0.15s ease;
+}
+
+.btn-fav:hover {
+    transform: scale(1.15);
+}
+
+.trail-card-content {
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.trail-card-header {
+    margin-bottom: 0.5rem;
+}
+
+.trail-region {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin: 0 0 0.2rem 0;
+}
+
+.trail-name {
+    font-size: 1.2rem;
+    color: var(--color-primary-dark);
+    margin: 0;
+    font-weight: 700;
+}
+
+.trail-quick-metrics {
+    display: flex;
+    gap: 0.65rem;
+    font-size: 0.8rem;
+    color: var(--color-text-main);
+    background-color: #f9fafb;
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius-sm);
+    margin: 0.65rem 0;
+    flex-wrap: wrap;
+}
+
+.trail-desc {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.trail-card-footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.btn-view-details {
+    flex: 1;
+    font-size: 0.88rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.btn-plan-hike {
+    flex: 1;
+    font-size: 0.88rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* List view variations */
+.trails-list-view .trail-card {
+    flex-direction: row;
+    align-items: center;
+}
+
+.trails-list-view .trail-card-image-wrap {
+    width: 200px;
+    height: 140px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+    .trails-list-view .trail-card {
+        flex-direction: column;
+    }
+    .trails-list-view .trail-card-image-wrap {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+/* Empty & Error States */
+.trails-empty-state, .trails-error-message {
+    background-color: var(--color-surface);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.empty-message-card h3, .trails-error-message h3 {
+    color: var(--color-primary-dark);
+    margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   9. Modal Dialog (<dialog>) - Native HTML5 Component
+   -------------------------------------------------------------------------- */
+dialog.trail-dialog {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 650px;
+    width: 90%;
+    padding: 0;
+    background-color: var(--color-surface);
+    color: var(--color-text-main);
+    overflow: hidden;
+}
+
+dialog::backdrop {
+    background-color: rgba(15, 41, 30, 0.75);
+    backdrop-filter: blur(3px);
+}
+
+.modal-dialog-inner {
+    padding: 1.75rem;
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #f3f4f6;
+    border: none;
+    font-size: 1.3rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-main);
+    transition: background-color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background-color: #e5e7eb;
+}
+
+.modal-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    padding-right: 2.5rem;
+}
+
+.modal-region {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.modal-rating {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #d97706;
+}
+
+.modal-title {
+    font-size: 1.7rem;
+    color: var(--color-primary-dark);
+    margin: 0 0 1rem 0;
+    line-height: 1.25;
+}
+
+.modal-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.modal-stat-box {
+    background-color: #f9fafb;
+    border: 1px solid var(--color-border-subtle);
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius-sm);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.stat-val {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+}
+
+.modal-desc-wrap h3, .modal-lists-grid h3 {
+    font-size: 1.1rem;
+    color: var(--color-primary-dark);
+    margin: 0 0 0.4rem 0;
+}
+
+.modal-desc-wrap p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0 0 1.25rem 0;
+}
+
+.modal-lists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.modal-features-list, .modal-gear-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+}
+
+.modal-features-list li, .modal-gear-list li {
+    margin-bottom: 0.35rem;
+}
+
+.modal-safety-note {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 0.75rem 1rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.modal-safety-note strong {
+    color: #92400e;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.modal-safety-note p {
+    margin: 0;
+    color: #78350f;
+}
+
+.modal-actions-row {
+    text-align: right;
+}
+
+.modal-action-btn {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   10. Form & Planner Page Styles (planner.html & planned.html)
+   -------------------------------------------------------------------------- */
+.form-container-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+}
+
+.form-intro {
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding-bottom: 1rem;
+}
+
+.form-intro p {
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+fieldset {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.75rem;
+    background-color: #ffffff;
+}
+
+legend {
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    padding: 0 0.5rem;
+    font-size: 1.05rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--color-text-main);
+    margin-bottom: 0.35rem;
+}
+
+.required-star {
+    color: #dc2626;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--color-text-main);
+    background-color: #ffffff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+    outline: none;
+}
+
+.radio-group, .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.65rem;
+    margin-top: 0.4rem;
+}
+
+.choice-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 0.92rem;
+}
+
+.choice-label input {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+}
+
+.form-submit-row {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.btn-submit {
+    padding: 0.75rem 2rem;
+    font-size: 1.05rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. Form Action Result Page (planned.html - URLSearchParams)
+   -------------------------------------------------------------------------- */
+.permit-card {
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    position: relative;
+}
+
+.permit-header {
+    text-align: center;
+    border-bottom: 2px dashed var(--color-border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.permit-stamp {
+    display: inline-block;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.permit-header h2 {
+    color: var(--color-primary-dark);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.8rem;
+}
+
+.permit-subtitle {
+    color: var(--color-text-muted);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.permit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.permit-field {
+    background-color: #f9fafb;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+}
+
+.field-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin-bottom: 0.2rem;
+}
+
+.field-value {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+}
+
+.field-value.highlight-trail {
+    color: var(--color-primary);
+    font-weight: 800;
+}
+
+.permit-section {
+    margin-bottom: 1.75rem;
+}
+
+.permit-section h3 {
+    font-size: 1.1rem;
+    color: var(--color-primary-dark);
+    margin: 0 0 0.5rem 0;
+}
+
+.gear-tags-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.gear-tag {
+    background-color: #dcfce7;
+    color: #14532d;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #86efac;
+}
+
+.permit-notes {
+    background-color: #f9fafb;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-main);
+    margin: 0;
+    font-size: 0.95rem;
+    border-left: 3px solid var(--color-primary);
+}
+
+.permit-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 1.25rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.submitted-timestamp {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.permit-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.empty-confirmation-card {
+    text-align: center;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 3rem 1.5rem;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+/* --------------------------------------------------------------------------
+   12. Attributions Page Styles (attributions.html)
+   -------------------------------------------------------------------------- */
+.attributions-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+}
+
+.attributions-card section {
+    margin-bottom: 2rem;
+}
+
+.attributions-card h2 {
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding-bottom: 0.5rem;
+}
+
+.attributions-list {
+    padding-left: 1.25rem;
+}
+
+.attributions-list li {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   13. Footer Styles
+   -------------------------------------------------------------------------- */
+footer {
+    background-color: var(--color-primary-dark);
+    color: #e5e7eb;
+    border-top: 3px solid var(--color-accent);
+    padding: 2rem 1rem;
+    margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.footer-brand {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.footer-nav a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-meta {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.video-link-highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+}
+
+.video-link-highlight:hover {
+    background-color: #d97706;
+    color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   14. Media Queries (Responsive Breakpoints: 768px+)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    .nav-toggle {
+        display: none;
+    }
+
+    .site-nav {
+        width: auto;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        margin-top: 0;
+        border-top: none;
+    }
+
+    .nav-menu a {
+        padding: 0.5rem 0.85rem;
+    }
+
+    .nav-menu a.active {
+        border-left: none;
+        border-bottom: 3px solid var(--color-accent-light);
+    }
+
+    .controls-top-row {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    .modal-action-btn {
+        width: auto;
+    }
+}

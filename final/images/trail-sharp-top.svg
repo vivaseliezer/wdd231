@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200" role="img" aria-label="Sharp Top Mountain Trail">
+  <defs>
+    <linearGradient id="g_sharp-top" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="60%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="200" fill="url(#g_sharp-top)"/>
+  <polygon points="0,170 90,75 180,170" fill="#334155" opacity="0.6"/>
+  <polygon points="90,170 160,45 240,170" fill="#1e293b" opacity="0.8"/>
+  <polygon points="180,170 240,65 300,170" fill="#334155" opacity="0.65"/>
+  <polygon points="150,45 130,85 170,85" fill="#f8fafc" opacity="0.9"/><polygon points="80,75 65,110 95,110" fill="#e2e8f0" opacity="0.8"/><polygon points="220,65 205,100 235,100" fill="#e2e8f0" opacity="0.8"/>
+  <path d="M 0 150 Q 80 130 150 160 T 300 140 L 300 200 L 0 200 Z" fill="#091410"/>
+  <polygon points="30,135 24,152 27,152 20,168 40,168 33,152 36,152" fill="#040b07"/>
+  <polygon points="270,130 264,148 267,148 260,164 280,164 273,148 276,148" fill="#040b07"/>
+  <rect x="0" y="152" width="300" height="48" fill="#0b1712" fill-opacity="0.9"/>
+  <text x="12" y="172" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#f8fafc">Sharp Top Mountain Trail</text>
+  <text x="12" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#94a3b8">Peaks of Otter</text>
+  <rect x="232" y="162" width="60" height="22" rx="11" fill="#f59e0b"/>
+  <text x="262" y="177" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">Moderate</text>
+</svg>

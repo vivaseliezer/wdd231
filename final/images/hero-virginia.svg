@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-label="Scenic mountain ridgeline across Virginia Blue Ridge Mountains at sunrise">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="35%" stop-color="#3b6790"/>
+      <stop offset="65%" stop-color="#d97736"/>
+      <stop offset="85%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+    <linearGradient id="sunGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="60%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="ridge4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="ridge3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2d4a3e"/>
+      <stop offset="100%" stop-color="#1e372b"/>
+    </linearGradient>
+    <linearGradient id="ridge2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e4634"/>
+      <stop offset="100%" stop-color="#133023"/>
+    </linearGradient>
+    <linearGradient id="ridge1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f291e"/>
+      <stop offset="100%" stop-color="#071710"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1200" height="500" fill="url(#skyGrad)"/>
+
+  <!-- Sun Rising Behind Distant Peaks -->
+  <circle cx="680" cy="270" r="85" fill="url(#sunGlow)" opacity="0.95"/>
+  <circle cx="680" cy="270" r="140" fill="#fef08a" opacity="0.18"/>
+
+  <!-- Distant Ridge Layer 4 -->
+  <path d="M 0 320 Q 200 240 450 300 T 900 270 Q 1050 250 1200 290 L 1200 500 L 0 500 Z" fill="url(#ridge4)" opacity="0.6"/>
+
+  <!-- Ridge Layer 3 -->
+  <path d="M 0 350 Q 180 280 380 340 T 780 310 Q 1020 280 1200 340 L 1200 500 L 0 500 Z" fill="url(#ridge3)" opacity="0.8"/>
+
+  <!-- Ridge Layer 2 -->
+  <path d="M 0 390 Q 260 320 540 400 T 980 350 Q 1100 370 1200 385 L 1200 500 L 0 500 Z" fill="url(#ridge2)"/>
+
+  <!-- Foreground Mountain Ridge Layer 1 -->
+  <path d="M 0 430 Q 220 370 480 435 T 880 400 Q 1060 410 1200 440 L 1200 500 L 0 500 Z" fill="url(#ridge1)"/>
+
+  <!-- Pine Tree Silhouettes on Left Outcrop -->
+  <g fill="#071710">
+    <!-- Tree 1 -->
+    <polygon points="120,380 110,405 115,405 106,425 112,425 102,445 138,445 128,425 134,425 125,405 130,405"/>
+    <rect x="118" y="445" width="4" height="20" fill="#040b08"/>
+    <!-- Tree 2 -->
+    <polygon points="155,395 147,415 151,415 143,430 148,430 140,448 170,448 162,430 167,430 159,415 163,415"/>
+    <rect x="153" y="448" width="4" height="15" fill="#040b08"/>
+    <!-- Tree 3 -->
+    <polygon points="85,410 78,426 82,426 75,440 79,440 72,455 98,455 91,440 95,440 88,426 92,426"/>
+    <rect x="83" y="455" width="4" height="12" fill="#040b08"/>
+  </g>
+
+  <!-- Right Side Pine Trees & Outcrop -->
+  <g fill="#071710">
+    <polygon points="1060,370 1050,395 1055,395 1045,418 1052,418 1040,440 1080,440 1068,418 1075,418 1065,395 1070,395"/>
+    <rect x="1058" y="440" width="4" height="25" fill="#040b08"/>
+    <polygon points="1100,385 1092,408 1096,408 1088,425 1093,425 1084,445 1116,445 1107,425 1112,425 1104,408 1108,408"/>
+    <rect x="1098" y="445" width="4" height="18" fill="#040b08"/>
+  </g>
+
+  <!-- Hiker Silhouette on Rocky Outcrop (Center-Left) -->
+  <g fill="#071710" transform="translate(320, 365) scale(0.65)">
+    <!-- Head with Cap -->
+    <ellipse cx="40" cy="18" rx="7" ry="7"/>
+    <path d="M 36 14 Q 48 12 50 16" stroke="#071710" stroke-width="2"/>
+    <!-- Torso and Backpack -->
+    <path d="M 33 25 L 45 25 L 43 55 L 32 55 Z"/>
+    <!-- Backpack -->
+    <rect x="23" y="27" width="10" height="22" rx="3"/>
+    <!-- Walking Stick / Trekking Pole -->
+    <line x1="56" y1="28" x2="62" y2="78" stroke="#071710" stroke-width="2.5"/>
+    <!-- Arms -->
+    <path d="M 43 27 L 54 36 L 56 30" stroke="#071710" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Legs -->
+    <path d="M 35 55 L 32 78" stroke="#071710" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 42 55 L 48 76" stroke="#071710" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

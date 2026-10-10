@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" role="img" aria-label="TrailScout Virginia Logo">
+  <defs>
+    <linearGradient id="logoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1b4332"/>
+      <stop offset="100%" stop-color="#081c15"/>
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon Badge -->
+  <rect x="4" y="6" width="48" height="48" rx="12" fill="url(#logoBgGrad)" />
+  <circle cx="28" cy="20" r="7" fill="url(#sunGrad)" />
+  <!-- Mountains -->
+  <polygon points="12,46 25,24 38,46" fill="#2d6a4f" />
+  <polygon points="24,46 37,29 48,46" fill="#40916c" />
+  <polygon points="25,24 22,29 28,29" fill="#d8f3dc" />
+  <!-- Trail Curve -->
+  <path d="M 18,46 Q 28,40 38,46" stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Text Brand -->
+  <text x="62" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#1b4332" letter-spacing="-0.5">TrailScout</text>
+  <text x="63" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#2d6a4f" letter-spacing="1.5">VIRGINIA</text>
+</svg>

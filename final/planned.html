@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Registration Confirmation - TrailScout Virginia</title>
+    <meta name="description" content="View and print your confirmed Virginia hike itinerary and registration permit details.">
+    <meta name="author" content="Orlando Vivas">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Trip Registration Confirmation - TrailScout Virginia">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Confirmed hiking itinerary and trail safety registration for Virginia state parks and national trails.">
+    <meta property="og:image" content="https://vivaseliezer.github.io/wdd_231/final/images/hero-virginia.svg">
+    <meta property="og:url" content="https://vivaseliezer.github.io/wdd_231/final/planned.html">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- Scripts (URLSearchParams reader) -->
+    <script src="scripts/main.js" defer></script>
+    <script src="scripts/planned.js" defer></script>
+</head>
+<body>
+    <!-- Site Header & Responsive Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-branding" aria-label="TrailScout Virginia Home">
+                <img src="images/logo.svg" alt="TrailScout Virginia Logo" class="site-logo-img" width="180" height="45">
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">☰</button>
+            <nav class="site-nav" aria-label="Main Navigation">
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="trails.html">Trail Directory</a></li>
+                    <li><a href="planner.html">Trip Planner</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <header class="page-header">
+            <h1>Trip Itinerary Confirmation</h1>
+            <p class="page-tagline">Your planned excursion details are presented below from your submitted registration data.</p>
+        </header>
+
+        <!-- Form Action Display Container (Populated via planned.js URLSearchParams) -->
+        <section id="confirmation-card-wrap" aria-label="Hike Confirmation Permit">
+            <p class="loading-text">Loading registration parameters...</p>
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">TrailScout Virginia</div>
+            <nav class="footer-nav" aria-label="Footer Navigation">
+                <a href="index.html">Home</a>
+                <a href="trails.html">Trail Directory</a>
+                <a href="planner.html">Trip Planner</a>
+                <a href="attributions.html">Attributions</a>
+                <a href="../index.html">Course Portfolio</a>
+            </nav>
+            <div class="footer-video-wrap">
+                <a href="https://youtu.be/placeholder-video-demo" target="_blank" rel="noopener noreferrer" class="video-link-highlight" aria-label="Watch W06 JavaScript Functionality Video Demonstration">
+                    🎥 Watch Video Demonstration
+                </a>
+            </div>
+            <p class="footer-meta">
+                &copy; <span id="currentyear"></span> TrailScout Virginia &bull; Orlando Vivas &bull; WDD 231 Final Project &bull; BYU-Idaho
+            </p>
+            <p class="footer-meta">
+                Last Modification: <span id="lastModified"></span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

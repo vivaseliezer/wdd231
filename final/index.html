@@ -3,69 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Project - WDD 231</title>
-    <meta name="description" content="Final Individual/Team project for WDD 231 by Orlando Vivas.">
+    <title>TrailScout Virginia - Scenic Hiking Trails & Mountain Guides</title>
+    <meta name="description" content="Discover, filter, and plan scenic hikes across Virginia's Blue Ridge Mountains, Shenandoah National Park, and cascading waterfalls with TrailScout Virginia.">
     <meta name="author" content="Orlando Vivas">
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../styles/normalize.css">
-    <link rel="stylesheet" href="../styles/styles.css">
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="TrailScout Virginia - Scenic Hiking Trails & Mountain Guides">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Explore top Virginia hiking trails, from Old Rag to McAfee Knob. Filter by difficulty, save favorites, and plan your outdoor adventure.">
+    <meta property="og:image" content="https://vivaseliezer.github.io/wdd_231/final/images/hero-virginia.svg">
+    <meta property="og:url" content="https://vivaseliezer.github.io/wdd_231/final/index.html">
 
-    <!-- Scripts -->
-    <script src="../scripts/main.js" defer></script>
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- Scripts (ES Module & Global) -->
+    <script src="scripts/main.js" defer></script>
+    <script type="module" src="scripts/home.js"></script>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Site Header & Responsive Navigation -->
     <header>
         <div class="header-container">
-            <a href="../index.html" class="logo-branding">
-                <span class="logo-icon">OV</span>
-                <span class="student-name">Orlando Vivas</span>
+            <a href="index.html" class="logo-branding" aria-label="TrailScout Virginia Home">
+                <img src="images/logo.svg" alt="TrailScout Virginia Logo" class="site-logo-img" width="180" height="45">
             </a>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">☰</button>
-            <nav>
+            <nav class="site-nav" aria-label="Main Navigation">
                 <ul class="nav-menu" id="nav-menu">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../chamber/index.html">Chamber</a></li>
-                    <li><a href="index.html" class="active">Final</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="trails.html">Trail Directory</a></li>
+                    <li><a href="planner.html">Trip Planner</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main>
-        <h1 class="page-title">Final Project</h1>
-        <article class="card">
-            <div class="card-header">
-                <h2>Project Overview</h2>
+    <main id="main-content">
+        <!-- Visitor Greeting Banner (LocalStorage tracking) -->
+        <div class="visitor-banner" id="visitor-banner" role="status">
+            <p id="visitor-greeting-message">Welcome to TrailScout Virginia! Start exploring scenic trails today.</p>
+            <button type="button" class="btn-close-banner" id="btn-close-banner" aria-label="Close welcome message">&times;</button>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero-section" aria-label="Virginia Hiking Introduction">
+            <div class="hero-image-wrap">
+                <img src="images/hero-virginia.svg" alt="Virginia Blue Ridge Mountains ridgeline at sunrise with pine trees and hiker silhouette" class="hero-img" width="1200" height="500">
+                <div class="hero-overlay">
+                    <div class="hero-content">
+                        <span class="hero-tag">Explore The Old Dominion</span>
+                        <h1 class="hero-title">Find Your Next Summit in Virginia</h1>
+                        <p class="hero-description">Discover over 15 curated mountain peaks, cascading waterfalls, and Appalachian trails with real hiker stats, gear tips, and difficulty ratings.</p>
+                        <div class="hero-cta-group">
+                            <a href="trails.html" class="btn-primary">Explore All Trails &rarr;</a>
+                            <a href="planner.html" class="btn-secondary">Plan a Trip</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <p class="about-text">
-                    This directory is reserved for the <strong>Final Capstone Project</strong> for WDD 231 at BYU-Idaho. Coming soon!
-                </p>
+        </section>
+
+        <!-- Quick Stats Strip (CSS Layout) -->
+        <section class="stats-strip" aria-label="Trail Network Highlights">
+            <div class="stat-card">
+                <span class="stat-number">16+</span>
+                <span class="stat-desc">Curated Virginia Trails</span>
             </div>
-        </article>
+            <div class="stat-card">
+                <span class="stat-number">5,729'</span>
+                <span class="stat-desc">Highest Summit (Mt. Rogers)</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <span class="stat-desc">Public Land & State Parks</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">4.8 / 5</span>
+                <span class="stat-desc">Average Hiker Rating</span>
+            </div>
+        </section>
+
+        <!-- Featured Trails Spotlight (Dynamically Rendered with ES Modules & Fetch) -->
+        <section class="featured-section" aria-label="Featured Virginia Trails">
+            <div class="section-header">
+                <h2>Featured Trails of the Month</h2>
+                <a href="trails.html">View all 16 trails &rarr;</a>
+            </div>
+            <div class="featured-grid" id="featured-trails-grid">
+                <!-- Dynamically populated by home.js via Fetch API -->
+                <p class="loading-text">Loading featured Virginia trails...</p>
+            </div>
+        </section>
+
+        <!-- Trail Preparedness Guides (CSS Multi-Column Grid) -->
+        <section class="guides-section" aria-label="Virginia Trail Safety & Essentials">
+            <div class="section-header">
+                <h2>Virginia Hiking Essentials & Leave No Trace</h2>
+            </div>
+            <div class="guides-grid">
+                <article class="guide-item">
+                    <h3>Hydration & Elevation</h3>
+                    <p>Virginia ridge ascents can involve steep vertical climbs. Always carry at least 2 to 3 liters of water per person, especially on strenuous routes like Old Rag.</p>
+                </article>
+                <article class="guide-item">
+                    <h3>Weather in the Blue Ridge</h3>
+                    <p>Mountain summits can be 15°F cooler than valley floors with sudden squalls. Always pack a lightweight windbreaker and rain layer in your daypack.</p>
+                </article>
+                <article class="guide-item">
+                    <h3>Leave No Trace Principles</h3>
+                    <p>Pack out all trash, keep to durable designated trails to preserve rare alpine flora, and respect local wildlife including Shenandoah black bears.</p>
+                </article>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Modal Dialog Component (HTML5 <dialog>) -->
+    <dialog id="trail-modal" class="trail-dialog" aria-labelledby="modal-trail-name">
+        <div class="modal-dialog-inner">
+            <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+            <div class="modal-content-body">
+                <!-- Content dynamically populated by modal.mjs -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Site Footer -->
     <footer>
         <div class="footer-container">
-            <div class="social-links">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
-                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63-.73-1.63-1.63-1.63Z"/></svg>
-                </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile">
-                    <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X / Twitter Profile">
-                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <div class="footer-brand">TrailScout Virginia</div>
+            <nav class="footer-nav" aria-label="Footer Navigation">
+                <a href="index.html">Home</a>
+                <a href="trails.html">Trail Directory</a>
+                <a href="planner.html">Trip Planner</a>
+                <a href="attributions.html">Attributions</a>
+                <a href="../index.html">Course Portfolio</a>
+            </nav>
+            <div class="footer-video-wrap">
+                <a href="https://youtu.be/placeholder-video-demo" target="_blank" rel="noopener noreferrer" class="video-link-highlight" aria-label="Watch W06 JavaScript Functionality Video Demonstration">
+                    🎥 Watch Video Demonstration
                 </a>
             </div>
-            <p class="footer-info">
-                &copy; <span id="currentyear"></span> &bull; Orlando Vivas &bull; BYU-Idaho
+            <p class="footer-meta">
+                &copy; <span id="currentyear"></span> TrailScout Virginia &bull; Orlando Vivas &bull; WDD 231 Final Project &bull; BYU-Idaho
             </p>
-            <p class="last-modified">
+            <p class="footer-meta">
                 Last Modification: <span id="lastModified"></span>
             </p>
         </div>

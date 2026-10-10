@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virginia Trail Directory - TrailScout Virginia</title>
+    <meta name="description" content="Explore and filter 16 scenic hiking trails in Virginia by difficulty, distance, and elevation. Save your favorites and plan your next hike with TrailScout.">
+    <meta name="author" content="Orlando Vivas">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Virginia Trail Directory - TrailScout Virginia">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Search and discover top Virginia trails: Old Rag, Humpback Rocks, Crabtree Falls, and more with live filters and details.">
+    <meta property="og:image" content="https://vivaseliezer.github.io/wdd_231/final/images/hero-virginia.svg">
+    <meta property="og:url" content="https://vivaseliezer.github.io/wdd_231/final/trails.html">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- Scripts (ES Module & Global) -->
+    <script src="scripts/main.js" defer></script>
+    <script type="module" src="scripts/trails.js"></script>
+</head>
+<body>
+    <!-- Site Header & Responsive Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-branding" aria-label="TrailScout Virginia Home">
+                <img src="images/logo.svg" alt="TrailScout Virginia Logo" class="site-logo-img" width="180" height="45">
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">☰</button>
+            <nav class="site-nav" aria-label="Main Navigation">
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="trails.html" class="active">Trail Directory</a></li>
+                    <li><a href="planner.html">Trip Planner</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <header class="page-header">
+            <h1>Virginia Trail Directory</h1>
+            <p class="page-tagline">Browse 16 hand-picked trails across Shenandoah, Blue Ridge, and George Washington Forest. Filter by difficulty, search by keyword, or view your saved favorites.</p>
+        </header>
+
+        <!-- Dynamic Summary Metrics (Computed with reduce() array method) -->
+        <section class="directory-summary-strip" id="trail-stats-summary" aria-label="Catalog Summary Statistics">
+            <!-- Populated dynamically by trails.js -->
+        </section>
+
+        <!-- Directory Controls (Search, Difficulty Filters, Favorites, Layout Toggle) -->
+        <section class="directory-controls" aria-label="Directory Search and Filters">
+            <div class="controls-top-row">
+                <div class="search-box-wrap">
+                    <label for="trail-search-input" class="search-label">Search Trails:</label>
+                    <input type="text" id="trail-search-input" class="search-input" placeholder="Search by name, region, or landscape features..." aria-label="Search trails by keyword">
+                </div>
+                <div class="filter-buttons-wrap" role="group" aria-label="Filter trails by difficulty">
+                    <span class="filter-label">Difficulty:</span>
+                    <button type="button" class="filter-btn active" data-filter="All" aria-pressed="true">All</button>
+                    <button type="button" class="filter-btn" data-filter="Easy" aria-pressed="false">Easy</button>
+                    <button type="button" class="filter-btn" data-filter="Moderate" aria-pressed="false">Moderate</button>
+                    <button type="button" class="filter-btn" data-filter="Strenuous" aria-pressed="false">Strenuous</button>
+                    <button type="button" class="fav-toggle-btn" id="fav-toggle-btn" aria-pressed="false">
+                        Saved Favorites <span class="badge-counter" id="fav-count-badge">0</span>
+                    </button>
+                </div>
+            </div>
+            <div class="controls-bottom-row">
+                <p class="trails-count-text" id="trails-count" aria-live="polite">Loading trails...</p>
+                <div class="view-toggle-wrap" role="group" aria-label="Toggle Layout View">
+                    <button type="button" class="view-btn active" id="grid-view-btn" aria-pressed="true" aria-label="Switch to Grid View">Grid ▦</button>
+                    <button type="button" class="view-btn" id="list-view-btn" aria-pressed="false" aria-label="Switch to List View">List ☵</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trails Dynamic Container (Populated via Fetch API from trails.json) -->
+        <section aria-label="Virginia Trails Catalog">
+            <div id="trails-container" class="trails-grid-view">
+                <p class="loading-text">Loading Virginia trail database...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Dialog Component (HTML5 <dialog>) -->
+    <dialog id="trail-modal" class="trail-dialog" aria-labelledby="modal-trail-name">
+        <div class="modal-dialog-inner">
+            <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+            <div class="modal-content-body">
+                <!-- Content dynamically populated by modal.mjs -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Site Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">TrailScout Virginia</div>
+            <nav class="footer-nav" aria-label="Footer Navigation">
+                <a href="index.html">Home</a>
+                <a href="trails.html">Trail Directory</a>
+                <a href="planner.html">Trip Planner</a>
+                <a href="attributions.html">Attributions</a>
+                <a href="../index.html">Course Portfolio</a>
+            </nav>
+            <div class="footer-video-wrap">
+                <a href="https://youtu.be/placeholder-video-demo" target="_blank" rel="noopener noreferrer" class="video-link-highlight" aria-label="Watch W06 JavaScript Functionality Video Demonstration">
+                    🎥 Watch Video Demonstration
+                </a>
+            </div>
+            <p class="footer-meta">
+                &copy; <span id="currentyear"></span> TrailScout Virginia &bull; Orlando Vivas &bull; WDD 231 Final Project &bull; BYU-Idaho
+            </p>
+            <p class="footer-meta">
+                Last Modification: <span id="lastModified"></span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
