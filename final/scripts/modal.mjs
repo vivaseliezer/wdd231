@@ -2,15 +2,10 @@
 
 let dialogElement = null;
 
-/**
- * Initialize the modal dialog component
- * @param {string} dialogId 
- */
 export function initModal(dialogId = 'trail-modal') {
     dialogElement = document.getElementById(dialogId);
     if (!dialogElement) return;
 
-    // Close button event listener
     const closeBtn = dialogElement.querySelector('.modal-close-btn');
     if (closeBtn) {
         closeBtn.addEventListener('click', () => {
@@ -18,7 +13,6 @@ export function initModal(dialogId = 'trail-modal') {
         });
     }
 
-    // Close when clicking on dialog backdrop
     dialogElement.addEventListener('click', (event) => {
         const rect = dialogElement.getBoundingClientRect();
         const isInDialog = (
@@ -33,10 +27,6 @@ export function initModal(dialogId = 'trail-modal') {
     });
 }
 
-/**
- * Populate and display the trail detail modal
- * @param {Object} trail 
- */
 export function openTrailModal(trail) {
     if (!dialogElement) {
         initModal();
@@ -46,22 +36,19 @@ export function openTrailModal(trail) {
     const modalBody = dialogElement.querySelector('.modal-content-body');
     if (!modalBody) return;
 
-    // Difficulty badge class
-    const diffClass = `badge-${trail.difficulty.toLowerCase()}`;
+    const chipClass = trail.difficulty === 'Easy' ? 'chip-easy' : (trail.difficulty === 'Moderate' ? 'chip-mod' : 'chip-stren');
 
-    // Highlights list items
     const highlightsHtml = trail.highlights && trail.highlights.length > 0
         ? trail.highlights.map(h => `<li>${h}</li>`).join('')
         : '<li>Scenic Virginia Nature</li>';
 
-    // Gear list items
     const gearHtml = trail.gearRequired && trail.gearRequired.length > 0
         ? trail.gearRequired.map(g => `<li>${g}</li>`).join('')
         : '<li>Standard Day Hiking Gear</li>';
 
     modalBody.innerHTML = `
         <div class="modal-header-row">
-            <span class="badge ${diffClass}">${trail.difficulty}</span>
+            <span class="chip ${chipClass}">${trail.difficulty}</span>
             <span class="modal-region">📍 ${trail.region}</span>
             <span class="modal-rating">⭐ ${trail.rating} / 5.0</span>
         </div>
@@ -107,17 +94,13 @@ export function openTrailModal(trail) {
             <p>${trail.safetyTip}</p>
         </div>
         <div class="modal-actions-row">
-            <a href="planner.html?trail=${trail.id}" class="btn-primary modal-action-btn">Plan Hike for this Trail &rarr;</a>
+            <a href="planner.html?trail=${trail.id}" class="action-btn">Plan Hike for this Trail &rarr;</a>
         </div>
     `;
 
-    // Show modal dialog natively
     dialogElement.showModal();
 }
 
-/**
- * Close the modal dialog
- */
 export function closeModal() {
     if (dialogElement && dialogElement.open) {
         dialogElement.close();

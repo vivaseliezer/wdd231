@@ -4,9 +4,7 @@
    Course: WDD 231 - Web Frontend Development I (BYU-Idaho)
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. Design Tokens / CSS Custom Properties
-   -------------------------------------------------------------------------- */
+/* 1. Custom Properties & Typography */
 :root {
     --color-primary: #1b4332;
     --color-primary-dark: #0f291e;
@@ -20,37 +18,21 @@
     --color-border: #d1d5db;
     --color-border-subtle: #e5e7eb;
 
-    /* Difficulty Badges - High AA Contrast */
-    --badge-easy-bg: #dcfce7;
-    --badge-easy-text: #14532d;
-    --badge-mod-bg: #fef3c7;
-    --badge-mod-text: #78350f;
-    --badge-stren-bg: #fee2e2;
-    --badge-stren-text: #991b1b;
+    --font-heading: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+    --font-body: 'Open Sans', 'Segoe UI', system-ui, sans-serif;
 
-    /* Typography */
-    --font-heading: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-    --font-body: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-
-    /* Spacing & Borders */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 14px;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.14);
 }
 
-/* --------------------------------------------------------------------------
-   2. Reset & Base Typography
-   -------------------------------------------------------------------------- */
+/* 2. Global Reset */
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
-    font-size: 100%;
 }
 
 body {
@@ -64,6 +46,11 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
 }
 
 img {
@@ -87,9 +74,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     outline-offset: 2px;
 }
 
-/* --------------------------------------------------------------------------
-   3. Header & Responsive Navigation
-   -------------------------------------------------------------------------- */
+/* 3. Header & Navigation (Flexbox) */
 header {
     background-color: var(--color-primary-dark);
     color: #ffffff;
@@ -97,10 +82,9 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-md);
 }
 
-.header-container {
+.header-wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0.75rem 1rem;
@@ -123,41 +107,17 @@ header {
     width: auto;
 }
 
-.brand-title {
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: #ffffff;
-}
-
-.brand-subtitle {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: #d1fae5;
-    text-transform: uppercase;
-}
-
-/* Mobile Hamburger Button */
 .nav-toggle {
     display: block;
     background: transparent;
     border: 2px solid #ffffff;
     color: #ffffff;
     font-size: 1.5rem;
-    line-height: 1;
-    padding: 0.4rem 0.65rem;
+    padding: 0.35rem 0.65rem;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: background-color 0.2s ease;
 }
 
-.nav-toggle:hover {
-    background-color: var(--color-primary-light);
-}
-
-/* Navigation List */
 .site-nav {
     width: 100%;
 }
@@ -177,19 +137,13 @@ header {
     display: flex;
 }
 
-.nav-menu li {
-    margin: 0;
-}
-
 .nav-menu a {
     display: block;
     color: #f3f4f6;
     padding: 0.75rem 1rem;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
     border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-menu a:hover {
@@ -197,16 +151,13 @@ header {
     color: #ffffff;
 }
 
-/* Wayfinding Active Link */
 .nav-menu a.active {
     background-color: #245840;
     color: #ffffff;
     border-left: 4px solid var(--color-accent-light);
 }
 
-/* --------------------------------------------------------------------------
-   4. Main Content Area & Layout Containers
-   -------------------------------------------------------------------------- */
+/* 4. Main & Section Structures */
 main {
     flex: 1 0 auto;
     max-width: 1200px;
@@ -215,9 +166,25 @@ main {
     padding: 1.5rem 1rem;
 }
 
-/* Visitor Greeting Banner (LocalStorage) */
+.page-title {
+    font-size: 2rem;
+    color: var(--color-primary-dark);
+    text-align: center;
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+}
+
+.page-tagline {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 1.75rem auto;
+}
+
+/* Visitor Greeting Banner (Fixed AA Contrast: #ffffff on #133020 = 15.48:1) */
 .visitor-banner {
-    background: linear-gradient(90deg, #1b4332, #2d6a4f);
+    background-color: #133020;
     color: #ffffff;
     padding: 0.75rem 1.25rem;
     border-radius: var(--radius-md);
@@ -225,12 +192,12 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-sm);
-    font-size: 0.95rem;
 }
 
-.visitor-banner p {
+.visitor-banner p, #visitor-greeting-message {
     margin: 0;
+    color: #ffffff;
+    font-size: 0.95rem;
 }
 
 .btn-close-banner {
@@ -240,57 +207,119 @@ main {
     font-size: 1.25rem;
     cursor: pointer;
     padding: 0 0.5rem;
-    line-height: 1;
 }
 
-/* Page Headers */
-.page-header {
-    margin-bottom: 2rem;
-    text-align: center;
+/* Section Headings */
+section {
+    margin-bottom: 2.5rem;
 }
 
-.page-header h1 {
-    font-size: 2.2rem;
+section > h2 {
+    font-size: 1.55rem;
     color: var(--color-primary-dark);
-    margin: 0 0 0.5rem 0;
-    font-weight: 800;
+    margin: 0 0 1rem 0;
+    border-bottom: 2px solid var(--color-border-subtle);
+    padding-bottom: 0.4rem;
 }
 
-.page-header .page-tagline {
-    font-size: 1.1rem;
-    color: var(--color-text-muted);
-    max-width: 700px;
-    margin: 0 auto;
+.section-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
-/* --------------------------------------------------------------------------
-   5. Hero Banner (Home Page)
-   -------------------------------------------------------------------------- */
-.hero-section {
+.section-top-bar h2 {
+    margin: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* 5. Custom Button & Chip Styles (Replaced all Bootstrap-like classes) */
+.action-btn, .outline-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.action-btn {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.action-btn:hover {
+    background-color: var(--color-primary-dark);
+    color: #ffffff;
+}
+
+.outline-btn {
+    background-color: #ffffff;
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary);
+}
+
+.outline-btn:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+/* Difficulty Chips (AA Contrast) */
+.chip {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chip-easy {
+    background-color: #dcfce7;
+    color: #14532d;
+    border: 1px solid #86efac;
+}
+
+.chip-mod {
+    background-color: #fef3c7;
+    color: #78350f;
+    border: 1px solid #fde047;
+}
+
+.chip-stren {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+/* 6. Hero Banner Component */
+.hero-wrapper {
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    margin-bottom: 2.5rem;
-    box-shadow: var(--shadow-md);
     background-color: var(--color-primary-dark);
-}
-
-.hero-image-wrap {
-    position: relative;
-    width: 100%;
-    height: 380px;
 }
 
 .hero-img {
     width: 100%;
-    height: 100%;
+    height: 380px;
     object-fit: cover;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(15, 41, 30, 0.4) 0%, rgba(15, 41, 30, 0.85) 100%);
+    background: linear-gradient(180deg, rgba(15, 41, 30, 0.4) 0%, rgba(15, 41, 30, 0.88) 100%);
     display: flex;
     align-items: flex-end;
     padding: 2rem;
@@ -308,296 +337,104 @@ main {
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.3rem 0.75rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 20px;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
 }
 
-.hero-title {
-    font-size: 2.3rem;
+.hero-heading {
+    font-size: 2.1rem;
     line-height: 1.2;
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 0.6rem 0;
     font-weight: 800;
     color: #ffffff;
 }
 
-.hero-description {
-    font-size: 1.1rem;
-    margin: 0 0 1.5rem 0;
+.hero-desc {
+    font-size: 1.05rem;
+    margin: 0 0 1.25rem 0;
     color: #f3f4f6;
-    line-height: 1.5;
 }
 
-.hero-cta-group {
+.hero-actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
 }
 
-/* --------------------------------------------------------------------------
-   6. Buttons & Badges
-   -------------------------------------------------------------------------- */
-.btn-primary, .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.65rem 1.25rem;
-    font-size: 0.95rem;
-    font-weight: 700;
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-}
-
-.btn-primary {
-    background-color: var(--color-primary);
-    color: #ffffff;
-}
-
-.btn-primary:hover {
-    background-color: var(--color-primary-dark);
-    color: #ffffff;
-}
-
-.btn-secondary {
-    background-color: #ffffff;
-    color: var(--color-primary-dark);
-    border: 2px solid var(--color-primary);
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-primary);
-    color: #ffffff;
-}
-
-/* Badges */
-.badge {
-    display: inline-block;
-    padding: 0.25rem 0.65rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-radius: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.badge-easy {
-    background-color: var(--badge-easy-bg);
-    color: var(--badge-easy-text);
-    border: 1px solid #86efac;
-}
-
-.badge-moderate {
-    background-color: var(--badge-mod-bg);
-    color: var(--badge-mod-text);
-    border: 1px solid #fde047;
-}
-
-.badge-strenuous {
-    background-color: var(--badge-stren-bg);
-    color: var(--badge-stren-text);
-    border: 1px solid #fca5a5;
-}
-
-/* --------------------------------------------------------------------------
-   7. Home Quick Stats & Safety Grid (CSS Layouts)
-   -------------------------------------------------------------------------- */
-.stats-strip {
+/* 7. Stats Grid & Safety Guide Layouts (CSS Grid) */
+.stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-    margin-bottom: 2.5rem;
 }
 
-.stat-card {
+.stat-box {
     background-color: var(--color-surface);
     padding: 1.25rem;
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border-subtle);
-    box-shadow: var(--shadow-sm);
     text-align: center;
 }
 
-.stat-card .stat-number {
+.stat-number {
     display: block;
     font-size: 2rem;
     font-weight: 800;
     color: var(--color-primary);
 }
 
-.stat-card .stat-desc {
+.stat-desc {
     font-size: 0.9rem;
     color: var(--color-text-muted);
-}
-
-/* Featured Section on Home */
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.section-header h2 {
-    font-size: 1.75rem;
-    color: var(--color-primary-dark);
-    margin: 0;
-}
-
-.featured-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.featured-card {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.featured-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-}
-
-.featured-img-wrap {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background-color: #e5e7eb;
-}
-
-.featured-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.featured-badge {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    box-shadow: var(--shadow-sm);
-}
-
-.featured-card-body {
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.featured-region {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin: 0 0 0.25rem 0;
-    font-weight: 600;
-}
-
-.featured-title {
-    font-size: 1.25rem;
-    color: var(--color-primary-dark);
-    margin: 0 0 0.5rem 0;
-    font-weight: 700;
-}
-
-.featured-metrics {
-    display: flex;
-    gap: 0.85rem;
-    font-size: 0.85rem;
-    color: var(--color-text-main);
-    background-color: #f3f4f6;
-    padding: 0.4rem 0.65rem;
-    border-radius: var(--radius-sm);
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
-}
-
-.featured-desc {
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-    margin: 0 0 1.25rem 0;
-    flex: 1;
-}
-
-.featured-card-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: auto;
-}
-
-/* Home Guides Grid */
-.guides-section {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
 }
 
 .guides-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
-    margin-top: 1.5rem;
 }
 
-.guide-item {
-    background-color: #f9fafb;
+.guide-panel {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     padding: 1.25rem;
     border-radius: var(--radius-md);
     border-left: 4px solid var(--color-primary);
 }
 
-.guide-item h3 {
+.guide-panel h3 {
     margin-top: 0;
-    color: var(--color-primary);
     font-size: 1.1rem;
+    color: var(--color-primary);
 }
 
-.guide-item p {
+.guide-panel p {
     font-size: 0.9rem;
     color: var(--color-text-muted);
     margin: 0;
 }
 
-/* --------------------------------------------------------------------------
-   8. Trail Directory Controls & Dynamic Cards (trails.html)
-   -------------------------------------------------------------------------- */
+/* 8. Trail Directory Controls & Items */
 .directory-controls {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 1.25rem;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow-sm);
 }
 
-.controls-top-row {
+.controls-row {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     margin-bottom: 1rem;
 }
 
-.search-box-wrap {
+.search-field {
     flex: 1;
 }
 
-.search-label {
+.search-field label {
     display: block;
     font-weight: 700;
     font-size: 0.9rem;
@@ -605,48 +442,30 @@ main {
     color: var(--color-primary-dark);
 }
 
-.search-input {
+.search-field input {
     width: 100%;
-    padding: 0.65rem 1rem;
+    padding: 0.6rem 0.85rem;
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius-sm);
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
+    font-size: 0.95rem;
 }
 
-.search-input:focus {
-    border-color: var(--color-primary);
-    outline: none;
-}
-
-.filter-buttons-wrap {
+.filter-group {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
 }
 
-.filter-label {
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-right: 0.25rem;
-}
-
 .filter-btn, .fav-toggle-btn {
     background-color: #f3f4f6;
     color: var(--color-text-main);
     border: 1px solid var(--color-border);
-    padding: 0.4rem 0.85rem;
+    padding: 0.35rem 0.8rem;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.filter-btn:hover, .fav-toggle-btn:hover {
-    background-color: #e5e7eb;
 }
 
 .filter-btn.active, .fav-toggle-btn.active {
@@ -661,10 +480,9 @@ main {
     padding: 0.1rem 0.45rem;
     border-radius: 10px;
     font-size: 0.75rem;
-    margin-left: 0.25rem;
 }
 
-.controls-bottom-row {
+.controls-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -681,11 +499,6 @@ main {
     margin: 0;
 }
 
-.view-toggle-wrap {
-    display: flex;
-    gap: 0.25rem;
-}
-
 .view-btn {
     background: transparent;
     border: 1px solid var(--color-border);
@@ -693,71 +506,61 @@ main {
     padding: 0.35rem 0.65rem;
     border-radius: var(--radius-sm);
     font-size: 0.85rem;
-    font-weight: 600;
     cursor: pointer;
 }
 
 .view-btn.active {
     background-color: var(--color-primary);
     color: #ffffff;
-    border-color: var(--color-primary);
 }
 
-/* Summary Stats Strip on Directory */
 .directory-summary-strip {
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
 }
 
 .summary-pill {
-    background-color: #ffffff;
+    background-color: var(--color-surface);
     border: 1px solid var(--color-border-subtle);
     border-radius: var(--radius-sm);
     padding: 0.4rem 0.75rem;
     font-size: 0.85rem;
     color: var(--color-text-muted);
-    box-shadow: var(--shadow-sm);
 }
 
 .summary-pill strong {
     color: var(--color-primary);
 }
 
-/* Trails Grid View (CSS Layouts) */
-.trails-grid-view {
+/* Trail Cards Grid / List */
+.trails-grid-view, .featured-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 3rem;
 }
 
-/* Trails List View (CSS Layouts) */
 .trails-list-view {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-bottom: 3rem;
 }
 
-.trail-card {
+.trail-panel {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
-.trail-card:hover {
+.trail-panel:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
 }
 
-.trail-card-image-wrap {
+.trail-image-wrap {
     position: relative;
     width: 100%;
     height: 190px;
@@ -770,7 +573,7 @@ main {
     object-fit: cover;
 }
 
-.trail-card-badge {
+.trail-chip-badge {
     position: absolute;
     top: 0.65rem;
     left: 0.65rem;
@@ -789,24 +592,14 @@ main {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: var(--shadow-sm);
     font-size: 1.1rem;
-    transition: transform 0.15s ease;
 }
 
-.btn-fav:hover {
-    transform: scale(1.15);
-}
-
-.trail-card-content {
+.trail-details {
     padding: 1.15rem;
     display: flex;
     flex-direction: column;
     flex: 1;
-}
-
-.trail-card-header {
-    margin-bottom: 0.5rem;
 }
 
 .trail-region {
@@ -823,11 +616,10 @@ main {
     font-weight: 700;
 }
 
-.trail-quick-metrics {
+.trail-metrics {
     display: flex;
     gap: 0.65rem;
     font-size: 0.8rem;
-    color: var(--color-text-main);
     background-color: #f9fafb;
     padding: 0.35rem 0.5rem;
     border-radius: var(--radius-sm);
@@ -839,83 +631,46 @@ main {
     font-size: 0.88rem;
     color: var(--color-text-muted);
     margin: 0 0 1.25rem 0;
-    line-height: 1.5;
     flex: 1;
 }
 
-.trail-card-footer {
+.trail-actions {
     display: flex;
     gap: 0.5rem;
     margin-top: auto;
 }
 
-.btn-view-details {
+.trail-actions .action-btn, .trail-actions .outline-btn {
     flex: 1;
     font-size: 0.88rem;
     padding: 0.5rem 0.75rem;
 }
 
-.btn-plan-hike {
-    flex: 1;
-    font-size: 0.88rem;
-    padding: 0.5rem 0.75rem;
-}
-
-/* List view variations */
-.trails-list-view .trail-card {
-    flex-direction: row;
-    align-items: center;
-}
-
-.trails-list-view .trail-card-image-wrap {
-    width: 200px;
-    height: 140px;
-    flex-shrink: 0;
-}
-
-@media (max-width: 640px) {
-    .trails-list-view .trail-card {
-        flex-direction: column;
+/* List view desktop adaptations */
+@media (min-width: 641px) {
+    .trails-list-view .trail-panel {
+        flex-direction: row;
     }
-    .trails-list-view .trail-card-image-wrap {
-        width: 100%;
-        height: 180px;
+    .trails-list-view .trail-image-wrap {
+        width: 220px;
+        height: auto;
+        flex-shrink: 0;
     }
 }
 
-/* Empty & Error States */
-.trails-empty-state, .trails-error-message {
-    background-color: var(--color-surface);
-    border: 1px dashed var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 3rem 1.5rem;
-    text-align: center;
-    margin: 2rem 0;
-}
-
-.empty-message-card h3, .trails-error-message h3 {
-    color: var(--color-primary-dark);
-    margin-top: 0;
-}
-
-/* --------------------------------------------------------------------------
-   9. Modal Dialog (<dialog>) - Native HTML5 Component
-   -------------------------------------------------------------------------- */
+/* 9. Native Dialog (<dialog>) */
 dialog.trail-dialog {
     border: none;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
     max-width: 650px;
     width: 90%;
     padding: 0;
     background-color: var(--color-surface);
     color: var(--color-text-main);
-    overflow: hidden;
 }
 
 dialog::backdrop {
     background-color: rgba(15, 41, 30, 0.75);
-    backdrop-filter: blur(3px);
 }
 
 .modal-dialog-inner {
@@ -936,15 +691,6 @@ dialog::backdrop {
     height: 36px;
     border-radius: 50%;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-main);
-    transition: background-color 0.2s ease;
-}
-
-.modal-close-btn:hover {
-    background-color: #e5e7eb;
 }
 
 .modal-header-row {
@@ -953,26 +699,12 @@ dialog::backdrop {
     gap: 0.75rem;
     margin-bottom: 0.5rem;
     flex-wrap: wrap;
-    padding-right: 2.5rem;
-}
-
-.modal-region {
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-    font-weight: 600;
-}
-
-.modal-rating {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #d97706;
 }
 
 .modal-title {
     font-size: 1.7rem;
     color: var(--color-primary-dark);
     margin: 0 0 1rem 0;
-    line-height: 1.25;
 }
 
 .modal-stats-grid {
@@ -989,8 +721,11 @@ dialog::backdrop {
     border-radius: var(--radius-sm);
 }
 
-.stat-label {
+.modal-stat-box span {
     display: block;
+}
+
+.stat-label {
     font-size: 0.75rem;
     color: var(--color-text-muted);
     text-transform: uppercase;
@@ -1003,50 +738,16 @@ dialog::backdrop {
     color: var(--color-primary-dark);
 }
 
-.modal-desc-wrap h3, .modal-lists-grid h3 {
-    font-size: 1.1rem;
-    color: var(--color-primary-dark);
-    margin: 0 0 0.4rem 0;
-}
-
-.modal-desc-wrap p {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-    line-height: 1.5;
-    margin: 0 0 1.25rem 0;
-}
-
-.modal-lists-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.25rem;
-}
-
-.modal-features-list, .modal-gear-list {
-    margin: 0;
-    padding-left: 1.2rem;
-    font-size: 0.9rem;
-    color: var(--color-text-main);
-}
-
-.modal-features-list li, .modal-gear-list li {
-    margin-bottom: 0.35rem;
-}
-
 .modal-safety-note {
     background-color: #fffbeb;
     border-left: 4px solid #f59e0b;
     padding: 0.75rem 1rem;
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    margin-bottom: 1.5rem;
+    margin: 1rem 0;
     font-size: 0.9rem;
 }
 
 .modal-safety-note strong {
     color: #92400e;
-    display: block;
-    margin-bottom: 0.25rem;
 }
 
 .modal-safety-note p {
@@ -1054,62 +755,34 @@ dialog::backdrop {
     color: #78350f;
 }
 
-.modal-actions-row {
-    text-align: right;
-}
-
-.modal-action-btn {
-    width: 100%;
-}
-
-/* --------------------------------------------------------------------------
-   10. Form & Planner Page Styles (planner.html & planned.html)
-   -------------------------------------------------------------------------- */
-.form-container-card {
+/* 10. Planner Form & Confirmation Permit Layouts */
+.form-panel, .permit-panel, .attributions-panel {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     padding: 2rem;
-    box-shadow: var(--shadow-sm);
-    max-width: 800px;
-    margin: 0 auto 3rem auto;
-}
-
-.form-intro {
-    margin-bottom: 1.75rem;
-    border-bottom: 1px solid var(--color-border-subtle);
-    padding-bottom: 1rem;
-}
-
-.form-intro p {
-    color: var(--color-text-muted);
-    margin: 0;
+    max-width: 820px;
+    margin: 0 auto;
 }
 
 fieldset {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 1.25rem 1.5rem;
-    margin-bottom: 1.75rem;
-    background-color: #ffffff;
+    margin-bottom: 1.5rem;
 }
 
 legend {
     font-weight: 700;
     color: var(--color-primary-dark);
     padding: 0 0.5rem;
-    font-size: 1.05rem;
 }
 
-.form-group {
+.form-field {
     margin-bottom: 1.25rem;
 }
 
-.form-group:last-child {
-    margin-bottom: 0;
-}
-
-.form-row {
+.form-columns {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
@@ -1119,21 +792,10 @@ label {
     display: block;
     font-weight: 600;
     font-size: 0.92rem;
-    color: var(--color-text-main);
     margin-bottom: 0.35rem;
 }
 
-.required-star {
-    color: #dc2626;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="number"],
-select,
-textarea {
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], select, textarea {
     width: 100%;
     padding: 0.65rem 0.85rem;
     border: 1.5px solid var(--color-border);
@@ -1142,20 +804,12 @@ textarea {
     font-family: inherit;
     color: var(--color-text-main);
     background-color: #ffffff;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-input:focus, select:focus, textarea:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
-    outline: none;
-}
-
-.radio-group, .checkbox-group {
+.choice-group {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 0.65rem;
-    margin-top: 0.4rem;
 }
 
 .choice-label {
@@ -1164,122 +818,25 @@ input:focus, select:focus, textarea:focus {
     gap: 0.5rem;
     font-weight: normal;
     cursor: pointer;
-    font-size: 0.92rem;
 }
 
 .choice-label input {
     margin: 0;
-    width: 18px;
-    height: 18px;
     accent-color: var(--color-primary);
-}
-
-.form-submit-row {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-}
-
-.btn-submit {
-    padding: 0.75rem 2rem;
-    font-size: 1.05rem;
-}
-
-/* --------------------------------------------------------------------------
-   11. Form Action Result Page (planned.html - URLSearchParams)
-   -------------------------------------------------------------------------- */
-.permit-card {
-    background-color: var(--color-surface);
-    border: 2px solid var(--color-primary);
-    border-radius: var(--radius-lg);
-    padding: 2.25rem;
-    box-shadow: var(--shadow-md);
-    max-width: 800px;
-    margin: 0 auto 3rem auto;
-    position: relative;
-}
-
-.permit-header {
-    text-align: center;
-    border-bottom: 2px dashed var(--color-border);
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.75rem;
-}
-
-.permit-stamp {
-    display: inline-block;
-    border: 2px solid var(--color-accent);
-    color: var(--color-accent);
-    font-weight: 800;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-}
-
-.permit-header h2 {
-    color: var(--color-primary-dark);
-    margin: 0 0 0.5rem 0;
-    font-size: 1.8rem;
-}
-
-.permit-subtitle {
-    color: var(--color-text-muted);
-    margin: 0;
-    font-size: 1rem;
 }
 
 .permit-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
-.permit-field {
+.permit-item {
     background-color: #f9fafb;
     border: 1px solid var(--color-border-subtle);
     border-radius: var(--radius-sm);
     padding: 0.75rem 1rem;
-}
-
-.field-label {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: var(--color-text-muted);
-    margin-bottom: 0.2rem;
-}
-
-.field-value {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--color-primary-dark);
-}
-
-.field-value.highlight-trail {
-    color: var(--color-primary);
-    font-weight: 800;
-}
-
-.permit-section {
-    margin-bottom: 1.75rem;
-}
-
-.permit-section h3 {
-    font-size: 1.1rem;
-    color: var(--color-primary-dark);
-    margin: 0 0 0.5rem 0;
-}
-
-.gear-tags-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
 }
 
 .gear-tag {
@@ -1289,108 +846,34 @@ input:focus, select:focus, textarea:focus {
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-    border: 1px solid #86efac;
+    display: inline-block;
+    margin: 0.2rem;
 }
 
 .permit-notes {
     background-color: #f9fafb;
     padding: 0.75rem 1rem;
     border-radius: var(--radius-sm);
-    color: var(--color-text-main);
-    margin: 0;
-    font-size: 0.95rem;
     border-left: 3px solid var(--color-primary);
 }
 
-.permit-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--color-border-subtle);
-    padding-top: 1.25rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.submitted-timestamp {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin: 0;
-}
-
-.permit-actions {
-    display: flex;
-    gap: 0.75rem;
-}
-
-.empty-confirmation-card {
-    text-align: center;
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 3rem 1.5rem;
-    max-width: 600px;
-    margin: 2rem auto;
-}
-
-/* --------------------------------------------------------------------------
-   12. Attributions Page Styles (attributions.html)
-   -------------------------------------------------------------------------- */
-.attributions-card {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    box-shadow: var(--shadow-sm);
-    max-width: 900px;
-    margin: 0 auto 3rem auto;
-}
-
-.attributions-card section {
-    margin-bottom: 2rem;
-}
-
-.attributions-card h2 {
-    color: var(--color-primary);
-    font-size: 1.3rem;
-    border-bottom: 1px solid var(--color-border-subtle);
-    padding-bottom: 0.5rem;
-}
-
-.attributions-list {
-    padding-left: 1.25rem;
-}
-
-.attributions-list li {
-    margin-bottom: 0.75rem;
-    font-size: 0.95rem;
-}
-
-/* --------------------------------------------------------------------------
-   13. Footer Styles
-   -------------------------------------------------------------------------- */
+/* 11. Footer */
 footer {
     background-color: var(--color-primary-dark);
     color: #e5e7eb;
     border-top: 3px solid var(--color-accent);
     padding: 2rem 1rem;
     margin-top: auto;
+    text-align: center;
 }
 
-.footer-container {
+.footer-wrapper {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     gap: 1rem;
-}
-
-.footer-brand {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #ffffff;
 }
 
 .footer-nav {
@@ -1404,12 +887,21 @@ footer {
     color: #cbd5e1;
     text-decoration: none;
     font-size: 0.9rem;
-    font-weight: 500;
 }
 
 .footer-nav a:hover {
     color: #ffffff;
     text-decoration: underline;
+}
+
+.video-link-highlight {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
 }
 
 .footer-meta {
@@ -1418,37 +910,14 @@ footer {
     margin: 0;
 }
 
-.video-link-highlight {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background-color: var(--color-accent);
-    color: #ffffff;
-    padding: 0.35rem 0.85rem;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.85rem;
-    transition: background-color 0.2s ease;
-}
-
-.video-link-highlight:hover {
-    background-color: #d97706;
-    color: #ffffff;
-}
-
-/* --------------------------------------------------------------------------
-   14. Media Queries (Responsive Breakpoints: 768px+)
-   -------------------------------------------------------------------------- */
+/* 12. Responsive Breakpoint (768px+) */
 @media (min-width: 768px) {
     .nav-toggle {
         display: none;
     }
-
     .site-nav {
         width: auto;
     }
-
     .nav-menu {
         display: flex;
         flex-direction: row;
@@ -1456,22 +925,15 @@ footer {
         margin-top: 0;
         border-top: none;
     }
-
     .nav-menu a {
         padding: 0.5rem 0.85rem;
     }
-
     .nav-menu a.active {
         border-left: none;
         border-bottom: 3px solid var(--color-accent-light);
     }
-
-    .controls-top-row {
+    .controls-row {
         flex-direction: row;
         align-items: flex-end;
-    }
-
-    .modal-action-btn {
-        width: auto;
     }
 }

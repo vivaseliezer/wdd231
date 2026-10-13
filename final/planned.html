@@ -7,6 +7,11 @@
     <meta name="description" content="View and print your confirmed Virginia hike itinerary and registration permit details.">
     <meta name="author" content="Orlando Vivas">
 
+    <!-- Google Fonts API (Required Preconnect and Stylesheet) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Trip Registration Confirmation - TrailScout Virginia">
     <meta property="og:type" content="website">
@@ -28,7 +33,7 @@
 <body>
     <!-- Site Header & Responsive Navigation -->
     <header>
-        <div class="header-container">
+        <div class="header-wrapper">
             <a href="index.html" class="logo-branding" aria-label="TrailScout Virginia Home">
                 <img src="images/logo.svg" alt="TrailScout Virginia Logo" class="site-logo-img" width="180" height="45">
             </a>
@@ -38,6 +43,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="trails.html">Trail Directory</a></li>
                     <li><a href="planner.html">Trip Planner</a></li>
+                    <li><a href="attributions.html">Attributions</a></li>
                 </ul>
             </nav>
         </div>
@@ -45,21 +51,43 @@
 
     <!-- Main Content -->
     <main id="main-content">
-        <header class="page-header">
-            <h1>Trip Itinerary Confirmation</h1>
-            <p class="page-tagline">Your planned excursion details are presented below from your submitted registration data.</p>
-        </header>
+        <h1 class="page-title">Trip Registration Confirmation</h1>
+        <p class="page-tagline">Your planned excursion details are presented below from your submitted registration data.</p>
 
-        <!-- Form Action Display Container (Populated via planned.js URLSearchParams) -->
+        <!-- Section 1: Intro Notice with h2 -->
+        <section class="summary-status-section" aria-label="Registration Overview">
+            <h2>Registration Status & Acknowledgement</h2>
+            <div class="guide-panel">
+                <p>Your registration parameters have been processed via URL Search Params. Please screenshot or print this page to carry with your party at the trailhead.</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Form Action Display with h2 -->
         <section id="confirmation-card-wrap" aria-label="Hike Confirmation Permit">
-            <p class="loading-text">Loading registration parameters...</p>
+            <h2>Confirmed Itinerary Details</h2>
+            <p>Loading registration parameters...</p>
+        </section>
+
+        <!-- Section 3: Trailhead Tips with h2 -->
+        <section class="trailhead-tips-section" aria-label="Trailhead Guidelines">
+            <h2>Trailhead Arrival Instructions</h2>
+            <div class="guides-grid">
+                <article class="guide-panel">
+                    <h3>Early Morning Parking</h3>
+                    <p>Trailhead parking lots in Shenandoah and along Route 311 often fill before 8:00 AM on weekends. Plan an early morning arrival.</p>
+                </article>
+                <article class="guide-panel">
+                    <h3>Check-in with Emergency Contact</h3>
+                    <p>Send a quick text to your designated emergency contact when beginning your ascent and upon safely exiting the trail.</p>
+                </article>
+            </div>
         </section>
     </main>
 
     <!-- Site Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-brand">TrailScout Virginia</div>
+        <div class="footer-wrapper">
+            <div>TrailScout Virginia</div>
             <nav class="footer-nav" aria-label="Footer Navigation">
                 <a href="index.html">Home</a>
                 <a href="trails.html">Trail Directory</a>
@@ -67,7 +95,7 @@
                 <a href="attributions.html">Attributions</a>
                 <a href="../index.html">Course Portfolio</a>
             </nav>
-            <div class="footer-video-wrap">
+            <div>
                 <a href="https://youtu.be/placeholder-video-demo" target="_blank" rel="noopener noreferrer" class="video-link-highlight" aria-label="Watch W06 JavaScript Functionality Video Demonstration">
                     🎥 Watch Video Demonstration
                 </a>

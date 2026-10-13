@@ -3,40 +3,37 @@ import { fetchTrails } from './api.mjs';
 import { trackVisit } from './storage.mjs';
 import { initModal, openTrailModal } from './modal.mjs';
 
-/**
- * Render featured trail cards on the home page
- * @param {Array} trails 
- */
 function renderFeaturedTrails(trails) {
     const container = document.getElementById('featured-trails-grid');
     if (!container) return;
 
-    // Pick 3 highlighted trails: Old Rag, Humpback Rocks, Crabtree Falls
     const featuredIds = ['old-rag', 'humpback-rocks', 'crabtree-falls'];
     const featuredList = trails.filter(t => featuredIds.includes(t.id));
 
     container.innerHTML = featuredList.map(trail => {
-        const diffClass = `badge-${trail.difficulty.toLowerCase()}`;
+        const chipClass = trail.difficulty === 'Easy' ? 'chip-easy' : (trail.difficulty === 'Moderate' ? 'chip-mod' : 'chip-stren');
         return `
-            <article class="featured-card">
-                <div class="featured-img-wrap">
-                    <img src="${trail.imageUrl}" alt="${trail.imageAlt}" width="300" height="200" loading="lazy" class="featured-img">
-                    <span class="badge ${diffClass} featured-badge">${trail.difficulty}</span>
+            <article class="trail-panel">
+                <div class="trail-image-wrap">
+                    <img src="${trail.imageUrl}" alt="${trail.imageAlt}" width="300" height="200" loading="lazy" class="trail-card-img">
+                    <span class="chip ${chipClass} trail-chip-badge">${trail.difficulty}</span>
                 </div>
-                <div class="featured-card-body">
-                    <p class="featured-region">📍 ${trail.region}</p>
-                    <h3 class="featured-title">${trail.name}</h3>
-                    <div class="featured-metrics">
+                <div class="trail-details">
+                    <div>
+                        <p class="trail-region">📍 ${trail.region}</p>
+                        <h3 class="trail-name">${trail.name}</h3>
+                    </div>
+                    <div class="trail-metrics">
                         <span>📏 <strong>${trail.distanceMiles}</strong> mi</span>
-                        <span>⛰️ <strong>${trail.elevationGainFt}</strong> ft elev</span>
+                        <span>⛰️ <strong>${trail.elevationGainFt}</strong> ft</span>
                         <span>⭐ <strong>${trail.rating}</strong></span>
                     </div>
-                    <p class="featured-desc">${trail.description}</p>
-                    <div class="featured-card-actions">
-                        <button type="button" class="btn-primary btn-view-feat" data-id="${trail.id}">
+                    <p class="trail-desc">${trail.description}</p>
+                    <div class="trail-actions">
+                        <button type="button" class="action-btn btn-view-feat" data-id="${trail.id}">
                             View Details
                         </button>
-                        <a href="planner.html?trail=${trail.id}" class="btn-secondary">
+                        <a href="planner.html?trail=${trail.id}" class="outline-btn">
                             Plan Hike
                         </a>
                     </div>
@@ -45,7 +42,6 @@ function renderFeaturedTrails(trails) {
         `;
     }).join('');
 
-    // Attach modal trigger listeners
     const modalButtons = container.querySelectorAll('.btn-view-feat');
     modalButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -58,9 +54,6 @@ function renderFeaturedTrails(trails) {
     });
 }
 
-/**
- * Display dynamic visitor greeting tracked in localStorage
- */
 function renderVisitorGreeting() {
     const greetingEl = document.getElementById('visitor-greeting-message');
     const greetingBanner = document.getElementById('visitor-banner');
@@ -78,9 +71,6 @@ function renderVisitorGreeting() {
     }
 }
 
-/**
- * Initialize Home Page
- */
 async function initHome() {
     initModal();
     renderVisitorGreeting();

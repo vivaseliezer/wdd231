@@ -6,7 +6,12 @@
     <title>TrailScout Virginia - Scenic Hiking Trails & Mountain Guides</title>
     <meta name="description" content="Discover, filter, and plan scenic hikes across Virginia's Blue Ridge Mountains, Shenandoah National Park, and cascading waterfalls with TrailScout Virginia.">
     <meta name="author" content="Orlando Vivas">
-    
+
+    <!-- Google Fonts API (Required Preconnect and Stylesheet) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="TrailScout Virginia - Scenic Hiking Trails & Mountain Guides">
     <meta property="og:type" content="website">
@@ -28,7 +33,7 @@
 <body>
     <!-- Site Header & Responsive Navigation -->
     <header>
-        <div class="header-container">
+        <div class="header-wrapper">
             <a href="index.html" class="logo-branding" aria-label="TrailScout Virginia Home">
                 <img src="images/logo.svg" alt="TrailScout Virginia Logo" class="site-logo-img" width="180" height="45">
             </a>
@@ -38,6 +43,7 @@
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="trails.html">Trail Directory</a></li>
                     <li><a href="planner.html">Trip Planner</a></li>
+                    <li><a href="attributions.html">Attributions</a></li>
                 </ul>
             </nav>
         </div>
@@ -45,77 +51,82 @@
 
     <!-- Main Content -->
     <main id="main-content">
+        <!-- Single <h1> matching title -->
+        <h1 class="page-title">TrailScout Virginia - Scenic Hiking Trails & Mountain Guides</h1>
+        <p class="page-tagline">Your comprehensive digital guide to discovering and conquering Virginia's most beautiful peaks, ridges, and waterfalls.</p>
+
         <!-- Visitor Greeting Banner (LocalStorage tracking) -->
         <div class="visitor-banner" id="visitor-banner" role="status">
             <p id="visitor-greeting-message">Welcome to TrailScout Virginia! Start exploring scenic trails today.</p>
             <button type="button" class="btn-close-banner" id="btn-close-banner" aria-label="Close welcome message">&times;</button>
         </div>
 
-        <!-- Hero Section -->
+        <!-- Section 1: Hero Banner with h2 -->
         <section class="hero-section" aria-label="Virginia Hiking Introduction">
-            <div class="hero-image-wrap">
+            <h2>Explore Virginia's Mountain Ridges & Waterfalls</h2>
+            <div class="hero-wrapper">
                 <img src="images/hero-virginia.svg" alt="Virginia Blue Ridge Mountains ridgeline at sunrise with pine trees and hiker silhouette" class="hero-img" width="1200" height="500">
                 <div class="hero-overlay">
                     <div class="hero-content">
                         <span class="hero-tag">Explore The Old Dominion</span>
-                        <h1 class="hero-title">Find Your Next Summit in Virginia</h1>
-                        <p class="hero-description">Discover over 15 curated mountain peaks, cascading waterfalls, and Appalachian trails with real hiker stats, gear tips, and difficulty ratings.</p>
-                        <div class="hero-cta-group">
-                            <a href="trails.html" class="btn-primary">Explore All Trails &rarr;</a>
-                            <a href="planner.html" class="btn-secondary">Plan a Trip</a>
+                        <p class="hero-heading">Find Your Next Summit in Virginia</p>
+                        <p class="hero-desc">Discover over 15 curated mountain peaks, cascading waterfalls, and Appalachian trails with real hiker stats, gear tips, and difficulty ratings.</p>
+                        <div class="hero-actions">
+                            <a href="trails.html" class="action-btn">Explore All Trails &rarr;</a>
+                            <a href="planner.html" class="outline-btn">Plan a Trip</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Quick Stats Strip (CSS Layout) -->
-        <section class="stats-strip" aria-label="Trail Network Highlights">
-            <div class="stat-card">
-                <span class="stat-number">16+</span>
-                <span class="stat-desc">Curated Virginia Trails</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">5,729'</span>
-                <span class="stat-desc">Highest Summit (Mt. Rogers)</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">100%</span>
-                <span class="stat-desc">Public Land & State Parks</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">4.8 / 5</span>
-                <span class="stat-desc">Average Hiker Rating</span>
+        <!-- Section 2: Quick Stats Strip with h2 -->
+        <section class="stats-section" aria-label="Trail Network Highlights">
+            <h2>Virginia Trail Network by the Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">16+</span>
+                    <span class="stat-desc">Curated Virginia Trails</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">5,729'</span>
+                    <span class="stat-desc">Highest Summit (Mt. Rogers)</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-desc">Public Land & State Parks</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">4.8 / 5</span>
+                    <span class="stat-desc">Average Hiker Rating</span>
+                </div>
             </div>
         </section>
 
-        <!-- Featured Trails Spotlight (Dynamically Rendered with ES Modules & Fetch) -->
+        <!-- Section 3: Featured Trails Spotlight with h2 -->
         <section class="featured-section" aria-label="Featured Virginia Trails">
-            <div class="section-header">
+            <div class="section-top-bar">
                 <h2>Featured Trails of the Month</h2>
                 <a href="trails.html">View all 16 trails &rarr;</a>
             </div>
             <div class="featured-grid" id="featured-trails-grid">
-                <!-- Dynamically populated by home.js via Fetch API -->
-                <p class="loading-text">Loading featured Virginia trails...</p>
+                <p>Loading featured Virginia trails...</p>
             </div>
         </section>
 
-        <!-- Trail Preparedness Guides (CSS Multi-Column Grid) -->
+        <!-- Section 4: Trail Preparedness Guides with h2 -->
         <section class="guides-section" aria-label="Virginia Trail Safety & Essentials">
-            <div class="section-header">
-                <h2>Virginia Hiking Essentials & Leave No Trace</h2>
-            </div>
+            <h2>Virginia Hiking Essentials & Leave No Trace</h2>
             <div class="guides-grid">
-                <article class="guide-item">
+                <article class="guide-panel">
                     <h3>Hydration & Elevation</h3>
                     <p>Virginia ridge ascents can involve steep vertical climbs. Always carry at least 2 to 3 liters of water per person, especially on strenuous routes like Old Rag.</p>
                 </article>
-                <article class="guide-item">
+                <article class="guide-panel">
                     <h3>Weather in the Blue Ridge</h3>
                     <p>Mountain summits can be 15°F cooler than valley floors with sudden squalls. Always pack a lightweight windbreaker and rain layer in your daypack.</p>
                 </article>
-                <article class="guide-item">
+                <article class="guide-panel">
                     <h3>Leave No Trace Principles</h3>
                     <p>Pack out all trash, keep to durable designated trails to preserve rare alpine flora, and respect local wildlife including Shenandoah black bears.</p>
                 </article>
@@ -135,8 +146,8 @@
 
     <!-- Site Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-brand">TrailScout Virginia</div>
+        <div class="footer-wrapper">
+            <div>TrailScout Virginia</div>
             <nav class="footer-nav" aria-label="Footer Navigation">
                 <a href="index.html">Home</a>
                 <a href="trails.html">Trail Directory</a>
@@ -144,7 +155,7 @@
                 <a href="attributions.html">Attributions</a>
                 <a href="../index.html">Course Portfolio</a>
             </nav>
-            <div class="footer-video-wrap">
+            <div>
                 <a href="https://youtu.be/placeholder-video-demo" target="_blank" rel="noopener noreferrer" class="video-link-highlight" aria-label="Watch W06 JavaScript Functionality Video Demonstration">
                     🎥 Watch Video Demonstration
                 </a>

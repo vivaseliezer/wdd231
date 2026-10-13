@@ -7,6 +7,11 @@
     <meta name="description" content="Plan and register your Virginia hiking excursion. Select your trail, record safety details, confirm gear essentials, and receive your printable trip itinerary.">
     <meta name="author" content="Orlando Vivas">
 
+    <!-- Google Fonts API (Required Preconnect and Stylesheet) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Virginia Hike Trip Planner - TrailScout Virginia">
     <meta property="og:type" content="website">
@@ -28,7 +33,7 @@
 <body>
     <!-- Site Header & Responsive Navigation -->
     <header>
-        <div class="header-container">
+        <div class="header-wrapper">
             <a href="index.html" class="logo-branding" aria-label="TrailScout Virginia Home">
                 <img src="images/logo.svg" alt="TrailScout Virginia Logo" class="site-logo-img" width="180" height="45">
             </a>
@@ -38,6 +43,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="trails.html">Trail Directory</a></li>
                     <li><a href="planner.html" class="active">Trip Planner</a></li>
+                    <li><a href="attributions.html">Attributions</a></li>
                 </ul>
             </nav>
         </div>
@@ -45,135 +51,155 @@
 
     <!-- Main Content -->
     <main id="main-content">
-        <header class="page-header">
-            <h1>Virginia Hike Trip Planner</h1>
-            <p class="page-tagline">Register your planned excursion to ensure safety, organize trip logistics, and verify necessary hiking equipment before heading into the mountains.</p>
-        </header>
+        <h1 class="page-title">Virginia Hike Trip Planner</h1>
+        <p class="page-tagline">Register your planned excursion to ensure safety, organize trip logistics, and verify necessary hiking equipment before heading into the mountains.</p>
 
-        <section class="form-container-card" aria-label="Hike Registration Form">
-            <div class="form-intro">
-                <p>Complete the itinerary details below. Upon submitting, your trip registration permit will be generated using URL parameters.</p>
+        <!-- Section 1: Instructions & Overview with h2 -->
+        <section class="guidelines-section" aria-label="Registration Instructions">
+            <h2>Trip Registration Guidelines</h2>
+            <div class="guide-panel">
+                <p>Registering your planned hike itinerary allows state park rangers and wilderness emergency contacts to know your group's expected route, party size, and return timetable. Please ensure every participant is equipped with appropriate footwear and hydration.</p>
             </div>
+        </section>
 
-            <form action="planned.html" method="get" id="trip-planner-form">
-                <!-- Hidden timestamp field -->
-                <input type="hidden" name="submittedAt" id="submittedAt">
+        <!-- Section 2: Form Panel with h2 -->
+        <section class="form-section" aria-label="Hike Registration Form">
+            <h2>Trail Itinerary Application Form</h2>
+            <div class="form-panel">
+                <form action="planned.html" method="get" id="trip-planner-form">
+                    <input type="hidden" name="submittedAt" id="submittedAt">
 
-                <!-- 1. Hiker Information -->
-                <fieldset>
-                    <legend>1. Primary Hiker Information</legend>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="hiker-name">Full Name: <span class="required-star">*</span></label>
-                            <input type="text" id="hiker-name" name="hikerName" placeholder="e.g. Orlando Vivas" required autocomplete="name">
+                    <!-- Fieldset 1: Hiker Information -->
+                    <fieldset>
+                        <legend>1. Primary Hiker Information</legend>
+                        <div class="form-columns">
+                            <div class="form-field">
+                                <label for="hiker-name">Full Name: <span style="color:#dc2626;">*</span></label>
+                                <input type="text" id="hiker-name" name="hikerName" placeholder="e.g. Orlando Vivas" required autocomplete="name">
+                            </div>
+                            <div class="form-field">
+                                <label for="email">Email Address: <span style="color:#dc2626;">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="example@byupathway.edu" required autocomplete="email">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email Address: <span class="required-star">*</span></label>
-                            <input type="email" id="email" name="email" placeholder="example@byupathway.edu" required autocomplete="email">
+                        <div class="form-columns">
+                            <div class="form-field">
+                                <label for="phone">Phone Number: <span style="color:#dc2626;">*</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required autocomplete="tel">
+                            </div>
+                            <div class="form-field">
+                                <label for="emergency-contact">Emergency Contact (Name & Phone): <span style="color:#dc2626;">*</span></label>
+                                <input type="text" id="emergency-contact" name="emergencyContact" placeholder="e.g. Maria Vivas (555) 987-6543" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">Phone Number: <span class="required-star">*</span></label>
-                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required autocomplete="tel">
-                        </div>
-                        <div class="form-group">
-                            <label for="emergency-contact">Emergency Contact (Name & Phone): <span class="required-star">*</span></label>
-                            <input type="text" id="emergency-contact" name="emergencyContact" placeholder="e.g. Maria Vivas (555) 987-6543" required>
-                        </div>
-                    </div>
-                </fieldset>
+                    </fieldset>
 
-                <!-- 2. Trip Details -->
-                <fieldset>
-                    <legend>2. Route & Schedule Details</legend>
-                    <div class="form-group">
-                        <label for="trail-select">Select Virginia Trail: <span class="required-star">*</span></label>
-                        <select id="trail-select" name="trail" required>
-                            <option value="" disabled selected>Loading trails catalog...</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="hike-date">Hike Date: <span class="required-star">*</span></label>
-                            <input type="date" id="hike-date" name="hikeDate" required>
+                    <!-- Fieldset 2: Route & Schedule -->
+                    <fieldset>
+                        <legend>2. Route & Schedule Details</legend>
+                        <div class="form-field">
+                            <label for="trail-select">Select Virginia Trail: <span style="color:#dc2626;">*</span></label>
+                            <select id="trail-select" name="trail" required>
+                                <option value="" disabled selected>Loading trails catalog...</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="party-size">Party Size (Total Hikers): <span class="required-star">*</span></label>
-                            <input type="number" id="party-size" name="partySize" min="1" max="25" value="1" required>
+                        <div class="form-columns">
+                            <div class="form-field">
+                                <label for="hike-date">Hike Date: <span style="color:#dc2626;">*</span></label>
+                                <input type="date" id="hike-date" name="hikeDate" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="party-size">Party Size (Total Hikers): <span style="color:#dc2626;">*</span></label>
+                                <input type="number" id="party-size" name="partySize" min="1" max="25" value="1" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Hiking Experience Level: <span class="required-star">*</span></label>
-                        <div class="radio-group" role="radiogroup" aria-label="Hiking Experience Level">
+                        <div class="form-field">
+                            <label>Hiking Experience Level: <span style="color:#dc2626;">*</span></label>
+                            <div class="choice-group" role="radiogroup" aria-label="Hiking Experience Level">
+                                <label class="choice-label">
+                                    <input type="radio" name="experience" value="Beginner" required>
+                                    <span>Beginner (Flat trails, casual walks)</span>
+                                </label>
+                                <label class="choice-label">
+                                    <input type="radio" name="experience" value="Intermediate" checked>
+                                    <span>Intermediate (Moderate climbs, day hikes)</span>
+                                </label>
+                                <label class="choice-label">
+                                    <input type="radio" name="experience" value="Advanced">
+                                    <span>Advanced (Rock scrambles, steep ascents)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Fieldset 3: Gear Checklist -->
+                    <fieldset>
+                        <legend>3. Safety & Gear Checklist</legend>
+                        <p style="margin:0 0 0.5rem 0; font-size:0.9rem; color:var(--color-text-muted);">Confirm the equipment items your group will carry:</p>
+                        <div class="choice-group" aria-label="Gear checklist">
                             <label class="choice-label">
-                                <input type="radio" name="experience" value="Beginner" required>
-                                <span>Beginner (Flat trails, casual walks)</span>
+                                <input type="checkbox" name="gear" value="Water (2-3L per person)" checked>
+                                <span>Water (2-3 Liters per person)</span>
                             </label>
                             <label class="choice-label">
-                                <input type="radio" name="experience" value="Intermediate" checked>
-                                <span>Intermediate (Moderate climbs, day hikes)</span>
+                                <input type="checkbox" name="gear" value="Sturdy Hiking Boots" checked>
+                                <span>Sturdy Hiking Boots</span>
                             </label>
                             <label class="choice-label">
-                                <input type="radio" name="experience" value="Advanced">
-                                <span>Advanced (Rock scrambles, steep ascents)</span>
+                                <input type="checkbox" name="gear" value="Offline GPS / Physical Map" checked>
+                                <span>Offline GPS / Physical Map</span>
+                            </label>
+                            <label class="choice-label">
+                                <input type="checkbox" name="gear" value="First Aid Kit">
+                                <span>First Aid Kit</span>
+                            </label>
+                            <label class="choice-label">
+                                <input type="checkbox" name="gear" value="Headlamp / Flashlight">
+                                <span>Headlamp / Flashlight</span>
+                            </label>
+                            <label class="choice-label">
+                                <input type="checkbox" name="gear" value="Weather-proof Shell / Jacket">
+                                <span>Weather-proof Shell / Jacket</span>
                             </label>
                         </div>
-                    </div>
-                </fieldset>
+                    </fieldset>
 
-                <!-- 3. Safety & Gear Checklist -->
-                <fieldset>
-                    <legend>3. Safety & Gear Checklist</legend>
-                    <p style="margin-top:0; font-size:0.9rem; color:var(--color-text-muted);">Confirm the equipment items your group will carry:</p>
-                    <div class="checkbox-group" aria-label="Gear checklist">
-                        <label class="choice-label">
-                            <input type="checkbox" name="gear" value="Water (2-3L per person)" checked>
-                            <span>Water (2-3 Liters per person)</span>
-                        </label>
-                        <label class="choice-label">
-                            <input type="checkbox" name="gear" value="Sturdy Hiking Boots" checked>
-                            <span>Sturdy Hiking Boots</span>
-                        </label>
-                        <label class="choice-label">
-                            <input type="checkbox" name="gear" value="Offline GPS / Physical Map" checked>
-                            <span>Offline GPS / Physical Map</span>
-                        </label>
-                        <label class="choice-label">
-                            <input type="checkbox" name="gear" value="First Aid Kit">
-                            <span>First Aid Kit</span>
-                        </label>
-                        <label class="choice-label">
-                            <input type="checkbox" name="gear" value="Headlamp / Flashlight">
-                            <span>Headlamp / Flashlight</span>
-                        </label>
-                        <label class="choice-label">
-                            <input type="checkbox" name="gear" value="Weather-proof Shell / Jacket">
-                            <span>Weather-proof Shell / Jacket</span>
-                        </label>
-                    </div>
-                </fieldset>
+                    <!-- Fieldset 4: Notes -->
+                    <fieldset>
+                        <legend>4. Notes & Considerations</legend>
+                        <div class="form-field">
+                            <label for="notes">Special Notes, Medical Considerations or Dietary Requirements:</label>
+                            <textarea id="notes" name="notes" rows="4" placeholder="Mention any medical alerts, allergies, or timing constraints..."></textarea>
+                        </div>
+                    </fieldset>
 
-                <!-- 4. Additional Information -->
-                <fieldset>
-                    <legend>4. Notes & Considerations</legend>
-                    <div class="form-group">
-                        <label for="notes">Special Notes, Medical Considerations or Dietary Requirements:</label>
-                        <textarea id="notes" name="notes" rows="4" placeholder="Mention any medical alerts, allergies, or timing constraints..."></textarea>
+                    <div style="display:flex; justify-content:flex-end;">
+                        <button type="submit" class="action-btn" style="padding:0.75rem 2rem; font-size:1.05rem;">Submit Trip Plan &rarr;</button>
                     </div>
-                </fieldset>
+                </form>
+            </div>
+        </section>
 
-                <div class="form-submit-row">
-                    <button type="submit" class="btn-primary btn-submit">Submit Trip Plan &rarr;</button>
-                </div>
-            </form>
+        <!-- Section 3: Safety Advisory with h2 -->
+        <section class="safety-section" aria-label="Ranger Safety Advisory">
+            <h2>Ranger Safety Advisory & Check-in Info</h2>
+            <div class="guides-grid">
+                <article class="guide-panel">
+                    <h3>Cellular Coverage Warning</h3>
+                    <p>Many Blue Ridge hollows and Shenandoah canyons have zero cellular reception. Download offline topographic maps beforehand.</p>
+                </article>
+                <article class="guide-panel">
+                    <h3>Weather Contingency</h3>
+                    <p>Check the National Weather Service mountain forecast on the morning of your trip. Turn back if afternoon thunderstorms develop.</p>
+                </article>
+            </div>
         </section>
     </main>
 
     <!-- Site Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-brand">TrailScout Virginia</div>
+        <div class="footer-wrapper">
+            <div>TrailScout Virginia</div>
             <nav class="footer-nav" aria-label="Footer Navigation">
                 <a href="index.html">Home</a>
                 <a href="trails.html">Trail Directory</a>
@@ -181,7 +207,7 @@
                 <a href="attributions.html">Attributions</a>
                 <a href="../index.html">Course Portfolio</a>
             </nav>
-            <div class="footer-video-wrap">
+            <div>
                 <a href="https://youtu.be/placeholder-video-demo" target="_blank" rel="noopener noreferrer" class="video-link-highlight" aria-label="Watch W06 JavaScript Functionality Video Demonstration">
                     🎥 Watch Video Demonstration
                 </a>
